@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+{% set active_page = "Login" %}
+{% extends "template.html" %}
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Login pagee</title>
+</head>
+
+<body>
+    {% block content %}
+    <h1> Login pagina </h1>
+    <div class="container" style="padding-top: 2em;">
+        <form class="row g-3 needs-validation" action="{{ url_for('login') }}" method="post">
+            <div class="col-md-8">
+                <p class="form-label">Username</p>
+                <input type='text' name="username" placeholder="Username" id="username" class="form-control" /> <br />
+                <div class=" valid-feedback">
+                    Test
+                </div>
+            </div>
+            <div class="col-md-8">
+                <p class="form-label">Password</p>
+                <input type='password' name="password" placeholder="Password" id="password"
+                    class="form-control" /><br />
+                <div class="valid-feedback">
+                    Test
+                </div>
+            </div>
+            <div class="col-md-8">
+
+                <div class="msg">{{ msg }}</div>
+                <input type="submit" value="Login" class="btn btn-primary mb-8">
+            </div>
+            <div class="col-md-8">
+                <p class="form-label">
+                    <a href="/register">Registreer hier!</a>
+                </p>
+            </div>
+        </form>
+    </div>
+    {% endblock %}
+</body>
+
+</html>

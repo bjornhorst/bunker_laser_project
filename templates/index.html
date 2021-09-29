@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+{% extends "template.html" %}
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>About Flask</title>
+</head>
+
+<body>
+  {% block content %}
+
+  <h1> Welkom </h1>
+
+  <div class='row'>
+    <div class='col-7 welkom-pagina-div-1'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque massa
+      tellus, facilisis a porttitor id, sagittis ac erat. Duis fermentum, ligula sed bibendum posuere, est sapien
+      sodales dui, aliquam sagittis lorem lacus vel nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. .
+    </div>
+    <div class='col-4 welkom-pagina-div-2'>
+      <img src='../static/images/LogoBunkersTS2.png' width="200px" height="150px">
+      <p>Stichting Bunkerbehoud </p>
+      <p>Terschelling</p>
+    </div>
+  </div>
+  {% endblock %}
+</body>
+
+</html>

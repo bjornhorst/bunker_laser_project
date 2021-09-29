@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+{% set active_page = "Videos" %}
+{% extends "template.html" %}
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>HELP</title>
+</head>
+
+<body>
+  {% block content %}
+  <h1> Video pagina </h1>
+  <div class="container">
+    <div class="row">
+      <div class="col-3 video-pagina-div-1">
+        <select class="custom-select" id="videoSelect">
+          <option value="1">Video 1 </option>
+          <option value="2">Video 2</option>
+          <option value="3">Video 3</option>
+        </select>
+      </div>
+
+      <div class="col-8 video-pagina-div-2">
+        <video controls>
+          <source src="{{ url_for('static', filename='videos/vliegtuig_pao.mp4') }}" type="video/mp4">
+        </video>
+        <h3 id="title">Vliegtuigen</h3>
+      </div>
+    </div>
+  </div>
+
+
+  {% endblock %}
+</body>
+
+</html>

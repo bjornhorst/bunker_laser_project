@@ -1,0 +1,65 @@
+<!--THIS FILE IS ONLY FOR SHOWING HOW TO PARSE PYTHON TO A TEMPLATE. THIS FILE MUST BE DELETED FOR THE ENDPRODUCT-->
+<!DOCTYPE html>
+{% set active_page = "parsePython" %}
+
+{% extends "template.html" %}
+<html lang="en" dir="ltr">
+  <head>
+      <script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+    <meta charset="utf-8">
+    <title>Parse python</title>
+  </head>
+  <body>
+    {% block content %}
+
+    <h1> parse python </h1>
+    <p>{{randomNumber}}</p>
+        <button name="forwardBtn" type="submit" onclick="led_on()">led ON</button>
+
+
+    <button name="forwardBtn" type="submit" onclick="led_off()">LED OFF</button>
+  <div class="col-sm">
+        <video id="video1" width="320" height="180" controls>
+          <source src="{{ url_for('static', filename='vliegtuig_pao.mp4') }}" type="video/mp4">
+        </video>
+        <h3>Video 1</h3>
+      </div>
+
+  <button onclick="playPause()">Play/Pause</button>
+
+    {{ forward_message }}
+    <script>
+        var myVideo = document.getElementById("video1");
+
+    function playPause() {
+  if (myVideo.paused) {
+      myVideo.play();
+      $.ajax({
+          url: '/video/on',
+          method: 'POST',
+      });
+  }
+  else
+    myVideo.pause();
+}
+
+    function led_on(){
+        $.ajax({
+        url: '/led/on',
+            method: 'POST',
+        });
+    }
+function led_off(){
+        $.ajax({
+        url: '/led/off',
+            method: 'POST',
+        });
+    }
+</script>
+    {% endblock %}
+  </body>
+
+</html>
