@@ -13,7 +13,7 @@ if (sys.platform == "win32"):
 
     # This command could have multiple commands separated by a new line \n
     # some_command = "cmd /c ping www.google.com"
-    some_command = "python -m venv venv && venv\Scripts\\activate && py -m pip install flask && py -m pip install flask-mysqldb && "
+    some_command = "python -m venv venv && venv\Scripts\\activate && py -m pip install flask && py -m pip install flask-mysqldb"
     p = subprocess.Popen(some_command, stdout=subprocess.PIPE, shell=True)
     (output, err) = p.communicate()
     print(output)
