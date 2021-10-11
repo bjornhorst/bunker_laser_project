@@ -12,7 +12,7 @@
 <body>
     {% block content %}
     <div class="container" style="padding-top: 2em;">
-        <form class="row g-3 needs-validation" action="{{ url_for('register') }}" method="post" autocomplete="off">
+        <form class="row g-3 needs-validation" action="{{ url_for('my_blueprint.register') }}" method="post" autocomplete="off">
             <div class="col-md-8">
                 <p class="form-label">Usermane</p>
                 <input type="text" name="username" placeholder="Username" id="username" class="form-control"
