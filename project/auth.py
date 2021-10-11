@@ -9,7 +9,7 @@ auth = Blueprint('auth', __name__)
 
 @auth.route('/login')
 def login():
-    return render_template('login.html')
+    return render_template('auth/login.html')
 @auth.route('/login', methods=['POST'])
 def login_post():
     email = request.form.get('email')
@@ -29,7 +29,7 @@ def login_post():
     return redirect(url_for('main.profile'))
 @auth.route('/signup')
 def signup():
-    return render_template('signup.html')
+    return render_template('/auth/signup.html')
 
 @auth.route('/logout')
 @login_required
