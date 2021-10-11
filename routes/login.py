@@ -6,12 +6,6 @@ from . import blueprint
 
 app = Flask(__name__)
 
-# Enter your database connection details below
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = ''
-app.config['MYSQL_DB'] = 'seeburgtisch'
-
 # Intialize MySQL
 mysql = MySQL(app)
 

@@ -1,21 +1,22 @@
 from flask import Flask, request, redirect, session, render_template, url_for
 
+from flask_mysqldb import MySQL
+import MySQLdb.cursors
 import os
 from routes import blueprint
 
 app = Flask(__name__)
 # Change this to your secret key (can be anything, it's for extra protection)
 app.secret_key = 'key'
-
 # Enter your database connection details below
-# app.config['MYSQL_HOST'] = 'localhost'
-# app.config['MYSQL_USER'] = 'root'
-# app.config['MYSQL_PASSWORD'] = ''
-# app.config['MYSQL_DB'] = 'seeburgtisch'
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = ''
+app.config['MYSQL_DB'] = 'seeburgtisch'
 app.register_blueprint(blueprint)
 #
 # # Intialize MySQL
-# mysql = MySQL(app)
+mysql = MySQL(app)
 @app.route('/')
 def homePage():
     return render_template("index.html")
@@ -51,7 +52,7 @@ def logout():
     session.pop('id', None)
     session.pop('username', None)
 
-    return redirect(url_for('login'))
+    return redirect(url_for('my_blueprint.login'))
 
 
 @app.route("/led/on", methods=['POST'])
