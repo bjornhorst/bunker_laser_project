@@ -78,3 +78,10 @@ def move_forward3():
     forward_message = "Led is on..."
     return render_template('parsePython.html', forward_message=forward_message);
 
+@app.route('/new-password')
+def newPasswordPage():
+    return render_template("newPassword.html")
+
+@app.route('/forgot-password')
+def forgotPasswordPage():
+    return render_template("forgotPassword.html")

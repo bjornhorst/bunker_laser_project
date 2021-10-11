@@ -23,27 +23,20 @@ main{
     font-weight: bold;
 }
 nav{
-    background-color: #3E4E5C;
+    background-color: #3C4245;
 }
 nav a{
     color: #fff;
     font-size: 18px;
     font-weight: bold;
 }
-
-
-
 nav a:hover{
     color: #FEE864;
     font-size: 18px;
 }
 
-
-label{
-    background-color: #FEE864;
-}
 footer{
-    background-color: #3E4E5C ;
+    background-color: #3C4245 ;
 }
 #asideright{
     background-color: gray;
@@ -55,7 +48,7 @@ footer{
     padding: 5px;
 }
 #container{
-    width: 80%;
+    width: 100%;
     height: 100VH;
     margin: 0 auto;
     display: flex;
@@ -63,14 +56,16 @@ footer{
     box-shadow: 0px 3px 6px gray;
 }
 .menudrop{
-    background-color: #3E4E5C;
+    background-color: #3C4245;
     border: none;
     color: #FEE864;
 }
+
 .video-pagina-div-1, .video-pagina-div-2{
     box-shadow: 0px 3px 6px gray;
     margin: 1em;
 }
+
 video{
     box-shadow: 3px 3px 6px gray;
 }
@@ -90,4 +85,141 @@ video{
 .welkom-pagina-div-2 img {
     box-shadow: 0px 3px 6px gray;
     margin: 1em;
+}
+
+html {
+    height: 100%;
+}
+body {
+    height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* Text Align */
+.text-c {
+    text-align: center;
+}
+
+
+/* Text Color */
+
+.text-darkyellow {
+    color: #DFCDC3;
+}
+
+/* Lines */
+
+.line-b {
+    border-bottom: 1px solid #719192 !important;
+}
+
+/* Buttons */
+.button {
+    border-radius: 3px;
+    font-weight: 900;
+
+}
+.form-button {
+    background-color: #719192;
+    border-color: #719192;
+    color: #e6e6e6;
+    font-weight: 900;
+
+}
+.form-button:hover
+ {
+    background-color: #5F6769;
+    border-color: #5F6769;
+    color: #e6e6e6;
+}
+.button-l {
+    width: 100% !important;
+    padding: 0.2em;
+    font-size: 22px;
+
+}
+
+/* Bootstrap Form Control Extension */
+
+.form-control,
+.border-line {
+    background-color: #5f5f5f;
+    background-image: none;
+    border: 1px solid #424242;
+    border-radius: 1px;
+    color: inherit;
+    display: block;
+    padding: 6px 12px;
+    width: 100%;
+}
+.form-control:focus,
+.border-line:focus {
+    border-color: #719192;
+    background-color: #616161;
+    color: #e6e6e6;
+}
+.form-control,
+.form-control:focus {
+    box-shadow: none;
+}
+.form-control::-webkit-input-placeholder { color: #BDBDBD; }
+
+/* Container */
+
+.container-content {
+    background: #3C4245;
+    color: inherit;
+    padding: 15px 20px 20px 20px;
+    border-color: #719192;
+    border-image: none;
+    border-style: solid solid none;
+    border-width: 1px 0;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+
+}
+
+/* Login & Register Pages*/
+
+.login-container {
+    max-width: 400px;
+    z-index: 100;
+    margin: 0 auto;
+    padding-top: 100px;
+}
+.login.login-container {
+    width: 300px;
+}
+.wrapper.login-container {
+    margin-top: 140px;
+}
+.logo-badge {
+    color: #e6e6e6;
+    font-size: 80px;
+    font-weight: 800;
+    letter-spacing: -10px;
+    margin-bottom: 0;
+    padding-top: 0.2em;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+
+}
+
+.text-whitesmoke {
+    color: whitesmoke;
+    background: #3C4245;
+    margin-bottom: 0;
+}
+
+.text-blacksmoke{
+    color: whitesmoke;
+    background: #3C4245;
+    margin-bottom: 0;
+    padding: 1em;
+}
+.input-background{
+    background-color: white;
+    border-radius: 5px;
 }
