@@ -26,7 +26,7 @@ def login_post():
 
     # if the above check passes, then we know the user has the right credentials
     login_user(user, remember=remember)
-    return redirect(url_for('main.profile'))
+    return redirect(url_for('main.index'))
 @auth.route('/signup')
 def signup():
     return render_template('/auth/signup.html')
@@ -55,3 +55,32 @@ def signup_post():
     db.session.commit()
 
     return redirect(url_for('auth.login'))
+
+@auth.route('/forgot-password')
+def forgot_password():
+    success = False
+    return render_template('auth/forgotPassword.html', success=success)
+
+@auth.route('/forgot-password', methods=['POST'])
+def forgot_password_post():
+    email = request.form.get('email')
+    if email == '':
+        success_message = "Vul een email in"
+        success = False
+        return render_template('auth/forgotPassword.html', success_message=success_message, success=success)
+    else:
+        success = True
+        success_message = "Een email om je wachtwoord te resetten is verstuurd naar: \n" + email
+        return render_template('auth/login.html', success_message=success_message, success=success)
+    # flash('Please check your login details and try again.')
+    return render_template('auth/forgotPassword.html', success_message=success_message, success=success)
+
+@auth.route('/new-password')
+def new_password():
+    return render_template('auth/newPassword.html')
+
+@auth.route('/new-password', methods=['POST'])
+def new_password_post():
+    success = True
+    success_message = "Uw wachtwoord is gerest. U kunt nu inloggen met uw nieuwe wachtword"
+    return render_template('auth/login.html', success_message=success_message, success=success)
