@@ -1,6 +1,4 @@
 <!DOCTYPE HTML>
-
-
 <html lang="en">
 
 <head>
@@ -39,13 +37,21 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
 
-
+                        {% if session['loggedin'] %}
                         {% set navigation_bar = [
                         ('/', 'index', 'Home'),
                         ('/videos', 'Videos', 'Videos'),
                         ('/parsePython', 'parsePython', 'ParsePython'),
+                        ('/admin', 'admin', 'admin'),
+                        ('/logout', 'logout','logout')
                         ] -%}
+                        {% else %}
+                        {% set navigation_bar = [
+                        ('/', 'index', 'Home'),
+                        ('/login', 'login', 'login'),
 
+                        ] -%}
+                        {% endif %}
                         {% set active_page = active_page|default('index') -%}
                         <ul class=" navigation navbar-nav ml-auto menu">
                             {% for href, id, caption in navigation_bar %}
@@ -53,19 +59,6 @@
                                     href="{{ href|e }}">{{ caption|e }}</a>
                             </li>
                             {% endfor %}
-
-                            {% if session['loggedin'] %}
-                            <li>
-                                <a class="nav-link js-scroll-trigger" href="/videoCreate">Create vid &nbsp;</a>
-                            </li>
-                            <li>
-                                <a class="nav-link js-scroll-trigger" href="/logout">Logout &nbsp;</a>
-                            </li>
-                            {% else %}
-                            <li>
-                                <a class="nav-link" href="/login">Login &nbsp;</a>
-                            </li>
-                            {% endif %}
                         </ul>
                     </div>
                 </nav>
@@ -79,7 +72,7 @@
                     &copy;2021 Copyright: Stichting Bunkerbehoud Terschelling | Deltion College Zwolle
                 </div>
             </footer>
-
+        </div>
         </div>
 
 </body>
