@@ -69,7 +69,7 @@ def forgot_password_post():
         return render_template('auth/forgotPassword.html', success_message=success_message, success=success)
     else:
         success = True
-        success_message = "Een email om je wachtwoord te resetten is verstuurd naar: \n" + email
+        success_message = "Een email om je wachtwoord te resetten is verstuurd naar: \n" + email + " !"
         return render_template('auth/login.html', success_message=success_message, success=success)
     # flash('Please check your login details and try again.')
     return render_template('auth/forgotPassword.html', success_message=success_message, success=success)
