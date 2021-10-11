@@ -58,8 +58,7 @@ def signup_post():
 
 @auth.route('/forgot-password')
 def forgot_password():
-    success = False
-    return render_template('auth/forgotPassword.html', success=success)
+    return render_template('auth/forgotPassword.html')
 
 @auth.route('/forgot-password', methods=['POST'])
 def forgot_password_post():
