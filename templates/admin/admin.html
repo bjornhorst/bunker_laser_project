@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+{% set active_page = "Register" %}
+{% extends "template.html" %}
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Register</title>
+</head>
+
+<body>
+    {% block content %}
+    <h1>Upload video</h1>
+    <form method="POST" action="/uploader" enctype="multipart/form-data">
+
+        <p>Video name : <input type='text' name='videoName'></p>
+        <p><input type="file" name="inputFile"></p>
+        <p><input type="submit" value="Submit"></p>
+    </form>
+    {% endblock %}
+</body>
+
+</html>
