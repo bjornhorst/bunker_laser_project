@@ -1,7 +1,9 @@
 {% set active_page = "Videos" %}
 {% extends "base.html" %}
 
+
 <body>
+
   {% block content %}
   <h1> Video pagina </h1>
   <div class="container">
@@ -15,16 +17,19 @@
       </div>
 
       <div class="col-8 video-pagina-div-2">
-        <video controls>
-          <source src="{{ url_for('static', filename='videos/vliegtuig_pao.mp4') }}" type="video/mp4">
-        </video>
+
+        <a onclick=" window.open(('static', filename = 'static/videos/vliegtuig_pao.mp4'), '_blank');">
+          <video controls id="myvideo">
+            <source src=" {{ url_for('static', filename='videos/vliegtuig_pao.mp4' ) }}" type="video/mp4">
+          </video>
+        </a>
         <h3 id="title">Vliegtuigen</h3>
       </div>
     </div>
   </div>
 
-
   {% endblock %}
 </body>
+
 
 </html>
