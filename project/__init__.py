@@ -3,14 +3,17 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_mail import Mail
 from config import Config
+from flask_migrate import Migrate
 
 # init SQLAlchemy so we can use it later in our models
-db = SQLAlchemy()
 
 
 # def create_app(config_class=Config):
 app = Flask(__name__)
 app.config.from_object(Config)
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
+
 mail = Mail(app)
 app.config['SECRET_KEY'] = 'secret-key-goes-here'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
@@ -22,7 +25,7 @@ login_manager.login_view = 'auth.login'
 login_manager.init_app(app)
 
 from .models import User
-
+from .models import Video
 @login_manager.user_loader
 def load_user(user_id):
     # since the user_id is just the primary key of our user table, use it in the query for the user

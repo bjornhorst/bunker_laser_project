@@ -29,3 +29,10 @@ class User(UserMixin, db.Model):
         except:
             return
         return User.query.get(id)
+
+
+class Video(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(64), index=True, unique=True)
+    beschrijving = db.Column(db.String(120), index=True, unique=True)
+    putne = db.Column(db.String(120), index=True, unique=True)
