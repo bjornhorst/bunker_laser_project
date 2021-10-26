@@ -1,20 +1,55 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request, redirect, flash, url_for
 from flask_login import login_required
+from project import app
 from . import db
-
+import os
+from .models import Video
+from werkzeug.utils import secure_filename
 admin = Blueprint('admin', __name__)
+
+UPLOAD_FOLDER = 'project/static/videos'
+ALLOWED_EXTENSIONS = {'mp4'}
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @admin.route("/admin", methods=['GET'])
 @login_required
 def adminPanel():
     return render_template('admin/admin.html');
 
-@admin.route("/admin/create", methods=['GET'])
-@login_required
-def create():
-    return render_template('admin/create.html');
+# @admin.route("/admin/create", methods=['GET'])
+# @login_required
+# def create():
+#     return render_template('admin/create.html');
 
 @admin.route("/admin/create", methods=['POST'])
 @login_required
 def create_post():
-    return render_template('admin/create.html');
+    title = request.form.get('title')
+    beschrijving = request.form.get('beschrijving')
+    if request.method == 'POST':
+        # check if the post request has the file part
+        if 'file' not in request.files:
+            flash('No file part')
+            return render_template('admin/admin.html', error="Bestand mag niet worden geupload")
+        file = request.files.get('file')
+        # If the user does not select a file, the browser submits an
+        # empty file without a filename.
+        if file.filename == '':
+            flash('No selected file')
+            return render_template('admin/admin.html', error="Selecteer een bestand")
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            path = 'videos/' + filename
+
+            new_video = Video(title=title, beschrijving=beschrijving, href=path)
+            # add the new video to the database
+            db.session.add(new_video)
+            db.session.commit()
+            return render_template('admin/videoPunten.html', path=filename, title=title, beschrijving=beschrijving)
+
+
+    return render_template('admin/admin.html');
