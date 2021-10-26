@@ -213,3 +213,16 @@ body {
     background-color: white;
     border-radius: 5px;
 }
+  .show {
+    display: block;
+  }
+
+  .ulTab{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nav-item{
+    display: flex;
+    flex-direction: row;
+  }
