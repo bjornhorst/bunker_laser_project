@@ -30,33 +30,13 @@
                         <th scope="row">1</th>
                         <td>{{video.title}}</td>
                         <td>{{video.beschrijving}}</td>
-                        <td><button type="button" class="btn btn-danger"><i class="fa fa-trash"
-                                    aria-hidden="true"></i></button>
+                        <td><button type="button" class="btn btn-danger" data-toggle="modal"
+                                data-target="#DeleteBevestiging"><i class="fa fa-trash" aria-hidden="true"></i></button>
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal"
                                 data-whatever="@mdo"><i class="fa fa-pencil" aria-hidden="true"></i></button>
                         </td>
                     </tr>
                     {% endfor %}
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Grote konijn</td>
-                        <td>Leuke beschrijving</td>
-                        <td><button type="button" class="btn btn-danger"><i class="fa fa-trash"
-                                    aria-hidden="true"></i></button>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal"
-                                data-whatever="@mdo"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Kleine konijn</td>
-                        <td>Leukere beschrijving</td>
-                        <td><button type="button" class="btn btn-danger"><i class="fa fa-trash"
-                                    aria-hidden="true"></i></button>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal"
-                                data-whatever="@mdo"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                        </td>
-                    </tr>
                 </tbody>
             </table>
         </div>
@@ -70,11 +50,18 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {% for user in user_data %}
                     <tr>
                         <th scope="row">1</th>
-                        <td>Admin</td>
-                        <td>admin@admin.nl</td>
+                        <td>{{user.name}}</td>
+                        <td>{{user.email}}</td>
+                        <td><button type="button" class="btn btn-danger" data-toggle="modal"
+                                data-target="#DeleteBevestiging"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal"
+                                data-whatever="@mdo"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                        </td>
                     </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
@@ -91,24 +78,24 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form action="/admin/create" method="post" enctype=multipart/form-data>
                         <div class="form-group">
                             <label for="title" class="col-form-label">Titel:</label>
-                            <input type="text" class="form-control" id="title">
+                            <input type="text" class="form-control" id="title" name="title">
                         </div>
                         <div class="form-group">
                             <label for="beschrijving" class="col-form-label">Beschrijving:</label>
-                            <textarea class="form-control" id="beschrijving"></textarea>
+                            <textarea class="form-control" id="beschrijving" name="beschrijving"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="upload-video" class="col-form-label">Upload video:</label>
-                            <input type="file" id="myFile" name="filename">
+                            <input type="file" id="file" name="file">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Upload video</button>
                         </div>
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Upload video</button>
                 </div>
             </div>
         </div>
@@ -149,7 +136,23 @@
         </div>
     </div>
 
-
+    <div class="modal fade" id="DeleteBevestiging" tabindex="-1" role="dialog" aria-labelledby="EditModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="EditModalLabel">Weet je het zeker ?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <button type="button" class="btn btn-primary">Ja</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Nee</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     {% endblock %}
