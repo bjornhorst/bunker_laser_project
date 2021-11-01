@@ -32,10 +32,41 @@
                         <td>{{video.beschrijving}}</td>
                         <td><button type="button" class="btn btn-danger" data-toggle="modal"
                                 data-target="#DeleteBevestiging"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal"
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal{{ video.id }}"
                                 data-whatever="@mdo"><i class="fa fa-pencil" aria-hidden="true"></i></button>
                         </td>
                     </tr>
+
+        <div class="modal fade" id="editModal{{ video.id }}" tabindex="-1" role="dialog" aria-labelledby="EditModalLabel{{ video.id }}"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="EditModalLabel{{ video.id }}">Edit video</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="admin/edit/{{ video.id }}">
+                        <div class="form-group">
+                            <label for="title" class="col-form-label">Titel:</label>
+                            <input type="text" class="form-control" id="title" value="{{ video.title }}" name="title">
+                        </div>
+                        <div class="form-group">
+                            <label for="beschrijving" class="col-form-label">Beschrijving:</label>
+                            <input class="form-control" id="beschrijving" value="{{ video.beschrijving }}" name="beschrijving">
+                        </div>
+                        <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Update video</button>
+                </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
                     {% endfor %}
                 </tbody>
             </table>

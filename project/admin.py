@@ -27,6 +27,14 @@ def adminPanel():
 # def create():
 #     return render_template('admin/create.html');
 
+@admin.route("/admin/edit/<id>", methods=['POST'])
+@login_required
+def edit_video(id):
+    video = Video.query.get(id)
+    video.title = request.form.get('title')
+    db.session.commit()
+    return render_template('admin/editVideoPunten.html')
+
 @admin.route("/admin/create", methods=['POST'])
 @login_required
 def create_post():
