@@ -4,6 +4,7 @@ from project import app
 from . import db
 import os
 from .models import Video
+from .models import User
 from werkzeug.utils import secure_filename
 admin = Blueprint('admin', __name__)
 
@@ -17,7 +18,9 @@ def allowed_file(filename):
 @admin.route("/admin", methods=['GET'])
 @login_required
 def adminPanel():
-    return render_template('admin/admin.html');
+    video_data = Video.query.all()
+    user_data = User.query.all()
+    return render_template('admin/admin.html', video_data=video_data, user_data=user_data);
 
 # @admin.route("/admin/create", methods=['GET'])
 # @login_required
