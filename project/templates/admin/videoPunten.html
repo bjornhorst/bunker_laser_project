@@ -1,0 +1,12 @@
+{% set active_page = "admin" %}
+{% extends "base.html" %}
+
+<body>
+    {% block content %}
+    <h1>VideoPunten</h1>
+
+        <p>Titel: {{ title }}</p>
+        <p>Beschrijving: {{ beschrijving }}</p>
+        <p>File: {{ path }}</p>
+    {% endblock %}
+</body>

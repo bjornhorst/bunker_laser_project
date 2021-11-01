@@ -1,3 +1,34 @@
+{#{% set active_page = "Videos" %}#}
+{#{% extends "base.html" %}#}
+{##}
+{#<body>#}
+{#  {% block content %}#}
+{#  <h1> Video pagina </h1>#}
+{#  <div class="container">#}
+{#    <div class="row">#}
+{#      <div class="col-3 video-pagina-div-1">#}
+{#        <select class="custom-select" id="videoSelect">#}
+{#          <option value="1">Video 1 </option>#}
+{#          <option value="2">Video 2</option>#}
+{#          <option value="3">Video 3</option>#}
+{#        </select>#}
+{#      </div>#}
+{#      <div class="col-8 video-pagina-div-2">#}
+{#           #}
+{#        <video controls>#}
+{#          <source src="{{ url_for('static', filename='videos/vliegtuig_pao.mp4') }}" type="video/mp4" >#}
+{#        </video>#}
+{#          <a onclick="window.open('http://127.0.0.1:5000/static/videos/vliegtuig_pao.mp4', '_blank', 'location=yes,height=10090%,width=100044440%,scrollbars=no,status=yes');">Video</a>#}
+{#        <h3 id="title">Vliegtuigen</h3>#}
+{#      </div>#}
+{#    </div>#}
+{#  </div>#}
+{##}
+{##}
+{#  {% endblock %}#}
+{#</body>#}
+
+</html>
 {% set active_page = "Videos" %}
 {% extends "base.html" %}
 
@@ -8,28 +39,32 @@
       <div class="col-8">
         <h3 id="video-titel">Vid page</h3>
         <div class="tab-content" id="pills-tabContent">
-          <div class="tab-pane fade show active" id="pills-video1" role="tabpanel" aria-labelledby="pills-video1-tab">
-            <a onclick=" window.open(('static', filename = 'static/videos/vliegtuig_pao.mp4'), '_blank');">
+{#          <div class="tab-pane fade show active" id="pills-video1" role="tabpanel" aria-labelledby="pills-video1-tab">#}
+{#            <a onclick=" window.open(('static', filename = 'static/videos/vliegtuig_pao.mp4'), '_blank');">#}
+{#              <video style="width: 100%;" controls id="myvideo">#}
+{#                <source src=" {{ url_for('static', filename='videos/vliegtuig_pao.mp4' ) }}" type="video/mp4">#}
+{#              </video>#}
+{#              <p>Titel: uit db</p>#}
+{#            </a>#}
+{#          </div>#}
+          {% for videos in video_data%}
+                 <div class="tab-pane fade" id="pills-video{{ videos.id }}" role="tabpanel" aria-labelledby="pills-video2-tab">
+            <a onclick=" window.open(('static/{{ videos.href }}'), '_blank');">
               <video style="width: 100%;" controls id="myvideo">
-                <source src=" {{ url_for('static', filename='videos/vliegtuig_pao.mp4' ) }}" type="video/mp4">
+                <source src="static/{{ videos.href }} " type="video/mp4">
               </video>
-              <p>Titel: uit db</p>
+                <p> {{ videos.title }}
+                </p>
             </a>
           </div>
-
-          <div class="tab-pane fade" id="pills-video2" role="tabpanel" aria-labelledby="pills-video2-tab">
-            <a onclick=" window.open(('static', filename = 'static/videos/bunny.mp4'), '_blank');">
-              <video style="width: 100%;" controls id="myvideo">
-                <source src=" {{ url_for('static', filename='videos/bunny.mp4' ) }}" type="video/mp4">
-              </video>
-            </a>
-          </div>
-          <div class="tab-pane fade" id="pills-video3" role="tabpanel" aria-labelledby="pills-video3-tab"> <a
-              onclick=" window.open(('static', filename = 'static/videos/bunny.mp4'), '_blank');">
-              <video style="width: 100%;" controls id="myvideo">
-                <source src=" {{ url_for('static', filename='videos/bunny.mp4' ) }}" type="video/mp4">
-              </video>
-            </a></div>
+            {% endfor %}
+{##}
+{#          <div class="tab-pane fade" id="pills-video3" role="tabpanel" aria-labelledby="pills-video3-tab"> <a#}
+{#              onclick=" window.open(('static', filename = 'static/videos/bunny.mp4'), '_blank');">#}
+{#              <video style="width: 100%;" controls id="myvideo">#}
+{#                <source src=" {{ url_for('static', filename='videos/bunny.mp4' ) }}" type="video/mp4">#}
+{#              </video>#}
+{#            </a></div>#}
         </div>
       </div>
 
