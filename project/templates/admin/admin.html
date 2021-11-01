@@ -5,11 +5,80 @@
     {% block content %}
     <h1>Adminpanel</h1>
 
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CreateModal"
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CreateModal" style="float: right;"
         data-whatever="@mdo">Create video</button>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" data-whatever="@mdo">Edit
-        video</button>
-    <button type="button" class="btn btn-danger">Delete video</button>
+
+    <div class="nav nav-tabs" id="nav-tab" role="tablist" style="margin-top: 1em;">
+        <a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
+            aria-controls="nav-home" aria-selected="true">Videos</a>
+        <a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
+            aria-controls="nav-profile" aria-selected="false">Gebruikers</a>
+    </div>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Naam</th>
+                        <th scope="col">beschrijving</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for video in video_data %}
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>{{video.title}}</td>
+                        <td>{{video.beschrijving}}</td>
+                        <td><button type="button" class="btn btn-danger"><i class="fa fa-trash"
+                                    aria-hidden="true"></i></button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal"
+                                data-whatever="@mdo"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Grote konijn</td>
+                        <td>Leuke beschrijving</td>
+                        <td><button type="button" class="btn btn-danger"><i class="fa fa-trash"
+                                    aria-hidden="true"></i></button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal"
+                                data-whatever="@mdo"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Kleine konijn</td>
+                        <td>Leukere beschrijving</td>
+                        <td><button type="button" class="btn btn-danger"><i class="fa fa-trash"
+                                    aria-hidden="true"></i></button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal"
+                                data-whatever="@mdo"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Naam</th>
+                        <th scope="col">Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Admin</td>
+                        <td>admin@admin.nl</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
     <div class="modal fade" id="CreateModal" tabindex="-1" role="dialog" aria-labelledby="CreateModalLabel"
         aria-hidden="true">
@@ -39,15 +108,12 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Send message</button>
+                    <button type="button" class="btn btn-primary">Upload video</button>
                 </div>
             </div>
         </div>
     </div>
     </div>
-
-
-
 
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="EditModalLabel"
         aria-hidden="true">
@@ -77,12 +143,14 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Send message</button>
+                    <button type="button" class="btn btn-primary">Update video</button>
                 </div>
             </div>
         </div>
     </div>
-    </div>
+
+
+
 
     {% endblock %}
 </body>
