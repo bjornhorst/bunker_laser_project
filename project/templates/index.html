@@ -1,20 +1,34 @@
 {% extends "base.html" %}
-<body>
-  {% block content %}
 
-  <h1> Welkom </h1>
+{% block content %}
 
-  <div class='row'>
-    <div class='col-7 welkom-pagina-div-1'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque massa
-      tellus, facilisis a porttitor id, sagittis ac erat. Duis fermentum, ligula sed bibendum posuere, est sapien
-      sodales dui, aliquam sagittis lorem lacus vel nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. .
+<div>
+  <img src="../static/images/hoofdpagina-picture.jpg" width="100%" />
+</div><br />
+
+<div class="container" style="text-align: center; padding: 1em;">
+  <div class="row">
+    <div class="col-sm homepage-tegels">
+      <i style="font-size: 30px;" class="fa fa-envelope" aria-hidden="true"></i><br />
+      <p>secretariaat@<br />bunkersterschelling.nl</p>
     </div>
-    <div class='col-4 welkom-pagina-div-2'>
-      <img src='../static/images/LogoBunkersTS2.png' width="200px" height="150px">
-      <p>Stichting Bunkerbehoud </p>
-      <p>Terschelling</p>
+    <div class="col-sm homepage-tegels">
+      <i style="font-size: 30px;" class="fa fa-map-marker" aria-hidden="true"></i><br />
+      <p>Tigerpad 5, 8881 GB,<br /> West-Terschelling</p>
     </div>
   </div>
-  {% endblock %}
-</body>
+</div><br />
 
+<div class="container">
+  <h1 style="color: #3f4e5d; font-weight: 900; text-align: center; ">Bunker
+    Terschelling
+  </h1>
+  <p>
+    Dit project is gemaakt door Dion Meijboom, Bjorn van der Horst, Rick van Ginkel en Sjoerd Huisman.<br />
+    Wij hebben dit project gemaakt als schoolproject. In dit project hebben wij een prototype ontworpen, ontwikkeld
+    en een webapplicatie gemaakt voor de stichting bunkersterschelling.
+  </p>
+  <hr>
+</div>
+
+{% endblock %}

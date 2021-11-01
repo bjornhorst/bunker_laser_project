@@ -69,9 +69,10 @@
                     </div>
                 </nav>
             </header>
-            <main>
+            <main {%if active_page=="index" %} style="padding: 0 !important;" {%endif%}>
                 {% block content %}
                 {% endblock %}
+
             </main>
             <footer class="page-footer" id="footer">
                 <div class="footer-copyright text-center py-3" id="copyFooter">
