@@ -4,9 +4,16 @@
 <body>
     {% block content %}
     <h1>Adminpanel</h1>
+    {% for mess in get_flashed_messages() %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" class="fade close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        {{mess}}
+    </div>
 
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CreateModal" style="float: right;"
-        data-whatever="@mdo">Create video</button>
+    {% endfor %}
+
 
     <div class="nav nav-tabs" id="nav-tab" role="tablist" style="margin-top: 1em;">
         <a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
@@ -20,8 +27,13 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Naam</th>
-                        <th scope="col">beschrijving</th>
+                        <th scope="col">Titel</th>
+                        <th scope="col">Beschrijving</th>
+                        <th scope="col">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CreateModal"
+                                style="float: right;" data-whatever="@mdo">Create video</button>
+                            </button>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -32,41 +44,45 @@
                         <td>{{video.beschrijving}}</td>
                         <td><button type="button" class="btn btn-danger" data-toggle="modal"
                                 data-target="#DeleteBevestiging"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal{{ video.id }}"
-                                data-whatever="@mdo"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#editModal{{ video.id }}" data-whatever="@mdo"><i class="fa fa-pencil"
+                                    aria-hidden="true"></i></button>
                         </td>
                     </tr>
 
-        <div class="modal fade" id="editModal{{ video.id }}" tabindex="-1" role="dialog" aria-labelledby="EditModalLabel{{ video.id }}"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="EditModalLabel{{ video.id }}">Edit video</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form method="post" action="admin/edit/{{ video.id }}">
-                        <div class="form-group">
-                            <label for="title" class="col-form-label">Titel:</label>
-                            <input type="text" class="form-control" id="title" value="{{ video.title }}" name="title">
-                        </div>
-                        <div class="form-group">
-                            <label for="beschrijving" class="col-form-label">Beschrijving:</label>
-                            <input class="form-control" id="beschrijving" value="{{ video.beschrijving }}" name="beschrijving">
-                        </div>
-                        <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Update video</button>
-                </div>
-                    </form>
-                </div>
+                    <div class="modal fade" id="editModal{{ video.id }}" tabindex="-1" role="dialog"
+                        aria-labelledby="EditModalLabel{{ video.id }}" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="EditModalLabel{{ video.id }}">Edit video</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form method="post" action="admin/edit/{{ video.id }}">
+                                        <div class="form-group">
+                                            <label for="title" class="col-form-label">Titel:</label>
+                                            <input type="text" class="form-control" id="title" value="{{ video.title }}"
+                                                name="title" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="beschrijving" class="col-form-label">Beschrijving:</label>
+                                            <input class="form-control" id="beschrijving"
+                                                value="{{ video.beschrijving }}" name="beschrijving" required>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Update video</button>
+                                        </div>
+                                    </form>
+                                </div>
 
-            </div>
-        </div>
-    </div>
+                            </div>
+                        </div>
+                    </div>
                     {% endfor %}
                 </tbody>
             </table>
@@ -88,10 +104,45 @@
                         <td>{{user.email}}</td>
                         <td><button type="button" class="btn btn-danger" data-toggle="modal"
                                 data-target="#DeleteBevestiging"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal"
-                                data-whatever="@mdo"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#UserEditModal{{ user.id }}" data-whatever="@mdo"><i class="fa fa-pencil"
+                                    aria-hidden="true"></i></button>
                         </td>
                     </tr>
+
+                    <div class="modal fade" id="UserEditModal{{ user.id }}" tabindex="-1" role="dialog"
+                        aria-labelledby="UserEditModalLabel{{ user.id }}" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="UserEditModalLabel{{ user.id }}">Edit user</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form method="post" action="/admin/edit/user/{{ user.id }}">
+                                        <div class="form-group">
+                                            <label for="name" class="col-form-label">Name:</label>
+                                            <input type="text" class="form-control" id="name" name="name"
+                                                value="{{ user.name }}" required>
+                                        </div>
+                                        <div class=" form-group">
+                                            <label for="email" class="col-form-label">Email:</label>
+                                            <input type="text" class="form-control" id="email" name="email"
+                                                value="{{ user.email }}" required>
+                                        </div>
+                                        <div class=" modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Update user</button>
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
                     {% endfor %}
                 </tbody>
             </table>
@@ -112,15 +163,15 @@
                     <form action="/admin/create" method="post" enctype=multipart/form-data>
                         <div class="form-group">
                             <label for="title" class="col-form-label">Titel:</label>
-                            <input type="text" class="form-control" id="title" name="title">
+                            <input type="text" class="form-control" id="title" name="title" required>
                         </div>
                         <div class="form-group">
                             <label for="beschrijving" class="col-form-label">Beschrijving:</label>
-                            <textarea class="form-control" id="beschrijving" name="beschrijving"></textarea>
+                            <textarea class="form-control" id="beschrijving" name="beschrijving" required></textarea>
                         </div>
                         <div class="form-group">
                             <label for="upload-video" class="col-form-label">Upload video:</label>
-                            <input type="file" id="file" name="file">
+                            <input type="file" id="file" name="file" required>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -133,39 +184,7 @@
     </div>
     </div>
 
-    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="EditModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="EditModalLabel">Edit video</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="title" class="col-form-label">Titel:</label>
-                            <input type="text" class="form-control" id="title">
-                        </div>
-                        <div class="form-group">
-                            <label for="beschrijving" class="col-form-label">Beschrijving:</label>
-                            <textarea class="form-control" id="beschrijving"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="upload-video" class="col-form-label">Upload video:</label>
-                            <input type="file" id="myFile" name="filename">
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Update video</button>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
     <div class="modal fade" id="DeleteBevestiging" tabindex="-1" role="dialog" aria-labelledby="EditModalLabel"
         aria-hidden="true">

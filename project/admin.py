@@ -35,6 +35,15 @@ def edit_video(id):
     db.session.commit()
     return render_template('admin/editVideoPunten.html')
 
+@admin.route("/admin/edit/user/<id>", methods=['POST'])
+@login_required
+def edit_user(id):
+    flash(f"Gelukt! Gegvens zijn aangepast")
+    user = User.query.get(id)
+    user.name = request.form.get('name')
+    db.session.commit()
+    return redirect(url_for('admin.adminPanel'))
+
 @admin.route("/admin/create", methods=['POST'])
 @login_required
 def create_post():
