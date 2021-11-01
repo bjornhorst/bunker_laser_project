@@ -21,7 +21,7 @@
       </div>
     </div>
     <ul class="nav mb-3 ulTab" id="pills-tab" role="tablist" style="display: flex; flex-direction: column; margin-left: 9em; -webkit-box-shadow: 0 0 10px rgb(175, 175, 175);
-      box-shadow: 0 0 10px rgb(174, 174, 174);">
+      box-shadow: 0 0 10px rgb(174, 174, 174);   overflow-x: scroll; max-height: 40em; ">
       {% for videos in video_data%}
       <li class="nav-item" role="presentation">
         <a class="{%if videos.id == 1 %}active{% endif %} nav-link text-center " id="pills-video{{ videos.id }}-tab"
