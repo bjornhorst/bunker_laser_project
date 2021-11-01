@@ -1,33 +1,108 @@
+{#{% set active_page = "Videos" %}#}
+{#{% extends "base.html" %}#}
+{##}
+{#<body>#}
+{#  {% block content %}#}
+{#  <h1> Video pagina </h1>#}
+{#  <div class="container">#}
+{#    <div class="row">#}
+{#      <div class="col-3 video-pagina-div-1">#}
+{#        <select class="custom-select" id="videoSelect">#}
+{#          <option value="1">Video 1 </option>#}
+{#          <option value="2">Video 2</option>#}
+{#          <option value="3">Video 3</option>#}
+{#        </select>#}
+{#      </div>#}
+{#      <div class="col-8 video-pagina-div-2">#}
+{#           #}
+{#        <video controls>#}
+{#          <source src="{{ url_for('static', filename='videos/vliegtuig_pao.mp4') }}" type="video/mp4" >#}
+{#        </video>#}
+{#          <a onclick="window.open('http://127.0.0.1:5000/static/videos/vliegtuig_pao.mp4', '_blank', 'location=yes,height=10090%,width=100044440%,scrollbars=no,status=yes');">Video</a>#}
+{#        <h3 id="title">Vliegtuigen</h3>#}
+{#      </div>#}
+{#    </div>#}
+{#  </div>#}
+{##}
+{##}
+{#  {% endblock %}#}
+{#</body>#}
+
+</html>
 {% set active_page = "Videos" %}
 {% extends "base.html" %}
 
 <body>
   {% block content %}
-      {{ title }}
-  <h1> Video pagina </h1>
-  <div class="container">
+  <div style="margin-top: 2em;" class="container">
     <div class="row">
-      <div class="col-3 video-pagina-div-1">
-        <select class="custom-select" id="videoSelect">
-          <option value="1">Video 1 </option>
-          <option value="2">Video 2</option>
-          <option value="3">Video 3</option>
-        </select>
+      <div class="col-8">
+        <h3 id="video-titel">Vid page</h3>
+        <div class="tab-content" id="pills-tabContent">
+{#          <div class="tab-pane fade show active" id="pills-video1" role="tabpanel" aria-labelledby="pills-video1-tab">#}
+{#            <a onclick=" window.open(('static', filename = 'static/videos/vliegtuig_pao.mp4'), '_blank');">#}
+{#              <video style="width: 100%;" controls id="myvideo">#}
+{#                <source src=" {{ url_for('static', filename='videos/vliegtuig_pao.mp4' ) }}" type="video/mp4">#}
+{#              </video>#}
+{#              <p>Titel: uit db</p>#}
+{#            </a>#}
+{#          </div>#}
+          {% for videos in video_data%}
+                 <div class="tab-pane fade" id="pills-video{{ videos.id }}" role="tabpanel" aria-labelledby="pills-video2-tab">
+            <a onclick=" window.open(('static/{{ videos.href }}'), '_blank');">
+              <video style="width: 100%;" controls id="myvideo">
+                <source src="static/{{ videos.href }} " type="video/mp4">
+              </video>
+                <p> {{ videos.title }}
+                </p>
+            </a>
+          </div>
+            {% endfor %}
+{##}
+{#          <div class="tab-pane fade" id="pills-video3" role="tabpanel" aria-labelledby="pills-video3-tab"> <a#}
+{#              onclick=" window.open(('static', filename = 'static/videos/bunny.mp4'), '_blank');">#}
+{#              <video style="width: 100%;" controls id="myvideo">#}
+{#                <source src=" {{ url_for('static', filename='videos/bunny.mp4' ) }}" type="video/mp4">#}
+{#              </video>#}
+{#            </a></div>#}
+        </div>
       </div>
 
-      <div class="col-8 video-pagina-div-2">
-        <video controls>
-          <source src="{{ url_for('static', filename='videos/vliegtuig_pao.mp4') }}" type="video/mp4" >
 
-        </video>
-          <a onclick="window.open('http://127.0.0.1:5000/static/videos/vliegtuig_pao.mp4', '_blank', 'location=yes,height=10090%,width=100044440%,scrollbars=no,status=yes');">Video</a>
-        <h3 id="title">Vliegtuigen</h3>
-      </div>
+
+      <ul class="nav mb-3 ulTab" id="pills-tab" role="tablist"
+        style="display: flex; flex-direction: column; margin-top: 2.2em; margin-left: 1em;">
+        <li class="nav-item" role="presentation">
+          <a class="nav-link active text-center" id="pills-video1-tab" data-toggle="pill" href="#pills-video1"
+            role="tab" aria-controls="pills-video1" aria-selected="true"> <video style="width: 200px;"
+              oncontextmenu="return false; ">
+              <source src=" {{ url_for('static', filename='videos/vliegtuig_pao.mp4' ) }}" type="video/mp4">
+            </video><br>Video 1
+          </a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link text-center" id="pills-video2-tab" data-toggle="pill" href="#pills-video2" role="tab"
+            aria-controls="pills-video2" aria-selected="false">
+            <video style="width: 200px;" oncontextmenu="return false; ">
+              <source src=" {{ url_for('static', filename='videos/bunny.mp4' ) }}" type="video/mp4">
+            </video><br>
+            Video 2
+          </a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link text-center" id="pills-video3-tab" data-toggle="pill" href="#pills-video3" role="tab"
+            aria-controls="pills-video3" aria-selected="false">
+            <video style="width: 200px;" oncontextmenu="return false; ">
+              <source src=" {{ url_for('static', filename='videos/test.mp4' ) }}" type="video/mp4">
+            </video><br>
+            Video 3
+          </a>
+        </li>
+      </ul>
     </div>
-  </div>
 
 
-  {% endblock %}
+    {% endblock %}
 </body>
 
 </html>

@@ -11,8 +11,9 @@ def index():
 @main.route('/videos' ,methods=["GET"])
 @login_required
 def videos():
-    title="test title"
-    return render_template('videos.html', title=title)
+    video_data = Video.query.all()
+    #title="test title"
+    return render_template('videos.html', video_data=video_data)
 
 @main.route('/parsePython')
 @login_required
