@@ -1,8 +1,6 @@
 {% set active_page = "admin" %}
 {% extends "base.html" %}
 
-
-
 <body style="overflow-y: hidden !important;">
     {% block content %}
     <h1>Adminpanel</h1>
@@ -13,10 +11,7 @@
         </button>
         {{mess}}
     </div>
-
     {% endfor %}
-
-
     <div class="nav nav-tabs" id="nav-tab" role="tablist" style="margin-top: 1em;">
         <a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
             aria-controls="nav-home" aria-selected="true">Videos</a>
@@ -48,7 +43,7 @@
                         <td><button type="button" class="btn btn-danger" data-toggle="modal"
                                 data-target="#DeleteBevestiging"><i class="fa fa-trash" aria-hidden="true"></i></button>
                             <button type="button" class="btn btn-primary" data-toggle="modal"
-                                data-target="#editModal{{ video.id }}" data-whatever="@mdo"><i class="fa fa-pencil"
+                                data-target="#editModal{{ video.id }}" data-whatever="@mdo"><i class="fa fa-edit"
                                     aria-hidden="true"></i></button>
                         </td>
                     </tr>
@@ -108,7 +103,7 @@
                         <td><button type="button" class="btn btn-danger" data-toggle="modal"
                                 data-target="#DeleteBevestiging"><i class="fa fa-trash" aria-hidden="true"></i></button>
                             <button type="button" class="btn btn-primary" data-toggle="modal"
-                                data-target="#UserEditModal{{ user.id }}" data-whatever="@mdo"><i class="fa fa-pencil"
+                                data-target="#UserEditModal{{ user.id }}" data-whatever="@mdo"><i class="fab fa-joomla"
                                     aria-hidden="true"></i></button>
                         </td>
                     </tr>
