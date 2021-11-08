@@ -32,8 +32,17 @@ def adminPanel():
 def edit_video(id):
     video = Video.query.get(id)
     video.title = request.form.get('title')
+    video.beschrijving = request.form.get('beschrijving')
     db.session.commit()
-    return render_template('admin/editVideoPunten.html')
+    return redirect(f'/admin/edit/videopunten/{video.id}')
+
+@admin.route("/admin/edit/videopunten/<id>", methods=['GET'])
+@login_required
+def edit_video_punten(id):
+    video = Video.query.get(id)
+    return render_template('admin/editVideoPunten.html', title=video.title, beschrijving=video.beschrijving, path=video.href, videoPunten=video.data)
+
+
 
 @admin.route("/admin/edit/user/<id>", methods=['POST'])
 @login_required
@@ -72,4 +81,12 @@ def create_post():
             return render_template('admin/videoPunten.html', path=path, title=title, beschrijving=beschrijving)
 
 
-    return render_template('admin/admin.html');
+    return render_template('admin/admin.html')
+
+@admin.route("/delete")
+def delete():
+
+    path = 'project/static/test.txt'
+    print(os.path.join(path))
+    test = os.path.join(path)
+    os.remove(test)
