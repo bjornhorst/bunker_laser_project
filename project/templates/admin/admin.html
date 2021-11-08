@@ -1,7 +1,9 @@
 {% set active_page = "admin" %}
 {% extends "base.html" %}
 
-<body>
+
+
+<body style="overflow-y: hidden !important;">
     {% block content %}
     <h1>Adminpanel</h1>
     {% for mess in get_flashed_messages() %}
@@ -22,8 +24,9 @@
             aria-controls="nav-profile" aria-selected="false">Gebruikers</a>
     </div>
     <div class="tab-content" id="nav-tabContent">
-        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-            <table class="table">
+        <div style="overflow-y: scroll; max-height: 25em;" class=" tab-pane fade show active" id="nav-home"
+            role="tabpanel" aria-labelledby="nav-home-tab">
+            <table class="table" style=" max-height: 10em;">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -39,7 +42,7 @@
                 <tbody>
                     {% for video in video_data %}
                     <tr>
-                        <th scope="row">1</th>
+                        <th scope="row">{{ video.id }}</th>
                         <td>{{video.title}}</td>
                         <td>{{video.beschrijving}}</td>
                         <td><button type="button" class="btn btn-danger" data-toggle="modal"
@@ -99,7 +102,7 @@
                 <tbody>
                     {% for user in user_data %}
                     <tr>
-                        <th scope="row">1</th>
+                        <th scope="row">{{ user.id }}</th>
                         <td>{{user.name}}</td>
                         <td>{{user.email}}</td>
                         <td><button type="button" class="btn btn-danger" data-toggle="modal"

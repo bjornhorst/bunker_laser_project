@@ -69,7 +69,7 @@ def create_post():
             # add the new video to the database
             db.session.add(new_video)
             db.session.commit()
-            return render_template('admin/videoPunten.html', path=filename, title=title, beschrijving=beschrijving)
+            return render_template('admin/videoPunten.html', path=path, title=title, beschrijving=beschrijving)
 
 
     return render_template('admin/admin.html');
