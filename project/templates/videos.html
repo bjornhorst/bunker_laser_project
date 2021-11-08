@@ -2,7 +2,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div style="margin-top: 2em;" class="container">
+<div style="margin-top: 2em; " class="container" >
   <div class="row">
     <div class="col-8">
       <div class="tab-content" id="pills-tabContent">
@@ -10,7 +10,7 @@
         <div class="tab-pane fade {%if videos.id == 1 %}show active{% endif %}" id="pills-video{{ videos.id }}"
           role="tabpanel" aria-labelledby="pills-video{{ videos.id }}-tab">
           <a onclick=" window.open(('static/{{ videos.href }}'), '_blank');">
-            <video style="width: 100%; margin-top: 0.4em;" controls id="myvideo">
+            <video style="width: 100%;" controls id="myvideo">
               <source src="static/{{ videos.href }}" type="video/mp4">
             </video>
             <h3> {{ videos.title }}</h3>
@@ -20,13 +20,13 @@
         {% endfor %}
       </div>
     </div>
-    <ul class="nav mb-3 ulTab" id="pills-tab" role="tablist" style="display: flex; flex-direction: column; margin-left: 9em; -webkit-box-shadow: 0 0 10px rgb(175, 175, 175);
-      box-shadow: 0 0 10px rgb(174, 174, 174);   overflow-x: scroll; max-height: 40em; ">
+    <ul class="nav mb-3 ulTab videoPaginaLijst" id="pills-tab" role="tablist">
       {% for videos in video_data%}
       <li class="nav-item" role="presentation">
         <a class="{%if videos.id == 1 %}active{% endif %} nav-link text-center " id="pills-video{{ videos.id }}-tab"
           data-toggle="pill" href="#pills-video{{ videos.id }}" role="tab" aria-controls="pills-video{{ videos.id }}"
-          aria-selected="true" data-bs-target="#pills-video{{ videos.id }}"> <video style="width: 200px;"
+          aria-selected="true" data-bs-target="#pills-video{{ videos.id }}">
+            <video style="width: 200px;"
             oncontextmenu="return false; ">
             <source src="static/{{ videos.href }} " type="video/mp4">
           </video><br>{{ videos.title }}
@@ -40,6 +40,19 @@
 </div>
 
 
+<script type="text/javascript">
+  $(function() {
+    $('a[data-toggle="pill"]').on('shown.bs.tab', function(e) {
+      $('.tab-pane:not(.active)').each(function(idx,el){
+        var vid = $(this).find('video');
+        if(!vid.paused)
+        {
+          vid.get(0).pause();
+        }
+      });
+    });
+  });
+</script>
 {% endblock %}
 </body>
 

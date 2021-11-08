@@ -2,58 +2,54 @@
 {% extends "base.html" %}
 
 <body style="overflow-y: hidden !important;">
-{% block content %}
+    {% block content %}
     <h1>Adminpanel</h1>
     {% for mess in get_flashed_messages() %}
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close" class="fade close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            {{ mess }}
-        </div>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" class="fade close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        {{mess}}
+    </div>
     {% endfor %}
     <div class="nav nav-tabs" id="nav-tab" role="tablist" style="margin-top: 1em;">
         <a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
-           aria-controls="nav-home" aria-selected="true">Videos</a>
+            aria-controls="nav-home" aria-selected="true">Videos</a>
         <a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
-           aria-controls="nav-profile" aria-selected="false">Gebruikers</a>
+            aria-controls="nav-profile" aria-selected="false">Gebruikers</a>
     </div>
     <div class="tab-content" id="nav-tabContent">
         <div style="overflow-y: scroll; max-height: 25em;" class=" tab-pane fade show active" id="nav-home"
-             role="tabpanel" aria-labelledby="nav-home-tab">
+            role="tabpanel" aria-labelledby="nav-home-tab">
             <table class="table" style=" max-height: 10em;">
                 <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Titel</th>
-                    <th scope="col">Beschrijving</th>
-                    <th scope="col">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CreateModal"
-                                style="float: right;" data-whatever="@mdo">Create video
-                        </button>
-                        </button>
-                    </th>
-                </tr>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Titel</th>
+                        <th scope="col">Beschrijving</th>
+                        <th scope="col">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CreateModal"
+                                style="float: right;" data-whatever="@mdo">Create video</button>
+                            </button>
+                        </th>
+                    </tr>
                 </thead>
                 <tbody>
-                {% for video in video_data %}
+                    {% for video in video_data %}
                     <tr>
                         <th scope="row">{{ video.id }}</th>
-                        <td>{{ video.title }}</td>
-                        <td>{{ video.beschrijving }}</td>
-                        <td>
-                            <button type="button" class="btn btn-danger" data-toggle="modal"
-                                    data-target="#DeleteBevestiging{{ video.id }}"><i class="fa fa-trash" aria-hidden="true"></i>
-                            </button>
+                        <td>{{video.title}}</td>
+                        <td>{{video.beschrijving}}</td>
+                        <td><button type="button" class="btn btn-danger" data-toggle="modal"
+                                data-target="#DeleteBevestiging"><i class="fa fa-trash" aria-hidden="true"></i></button>
                             <button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#editModal{{ video.id }}" data-whatever="@mdo"><i class="fa fa-edit"
-                                                                                                   aria-hidden="true"></i>
-                            </button>
+                                data-target="#editModal{{ video.id }}" data-whatever="@mdo"><i class="fa fa-edit"
+                                    aria-hidden="true"></i></button>
                         </td>
                     </tr>
 
                     <div class="modal fade" id="editModal{{ video.id }}" tabindex="-1" role="dialog"
-                         aria-labelledby="EditModalLabel{{ video.id }}" aria-hidden="true">
+                        aria-labelledby="EditModalLabel{{ video.id }}" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -67,17 +63,16 @@
                                         <div class="form-group">
                                             <label for="title" class="col-form-label">Titel:</label>
                                             <input type="text" class="form-control" id="title" value="{{ video.title }}"
-                                                   name="title" required>
+                                                name="title" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="beschrijving" class="col-form-label">Beschrijving:</label>
                                             <input class="form-control" id="beschrijving"
-                                                   value="{{ video.beschrijving }}" name="beschrijving" required>
+                                                value="{{ video.beschrijving }}" name="beschrijving" required>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
-                                                    data-dismiss="modal">Close
-                                            </button>
+                                                data-dismiss="modal">Close</button>
                                             <button type="submit" class="btn btn-primary">Update video</button>
                                         </div>
                                     </form>
@@ -86,56 +81,35 @@
                             </div>
                         </div>
                     </div>
-                    <div class="modal fade" id="DeleteBevestiging{{ video.id }}" tabindex="-1" role="dialog"
-                         aria-labelledby="DeleteBevestigingModal{{ video.id }}"
-                         aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="DeleteBevestigingModal{{ video.id }}">Weet je het zeker ?</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <button type="button" class="btn btn-primary">Ja</button>
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Nee</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
         <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
             <table class="table">
                 <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Naam</th>
-                    <th scope="col">Email</th>
-                </tr>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Naam</th>
+                        <th scope="col">Email</th>
+                    </tr>
                 </thead>
                 <tbody>
-                {% for user in user_data %}
+                    {% for user in user_data %}
                     <tr>
                         <th scope="row">{{ user.id }}</th>
-                        <td>{{ user.name }}</td>
-                        <td>{{ user.email }}</td>
-                        <td>
-                            <button type="button" class="btn btn-danger" data-toggle="modal"
-                                    data-target="#DeleteBevestiging"><i class="fa fa-trash" aria-hidden="true"></i>
-                            </button>
+                        <td>{{user.name}}</td>
+                        <td>{{user.email}}</td>
+                        <td><button type="button" class="btn btn-danger" data-toggle="modal"
+                                data-target="#DeleteBevestiging"><i class="fa fa-trash" aria-hidden="true"></i></button>
                             <button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#UserEditModal{{ user.id }}" data-whatever="@mdo"><i
-                                    class="fab fa-joomla"
+                                data-target="#UserEditModal{{ user.id }}" data-whatever="@mdo"><i class="fab fa-joomla"
                                     aria-hidden="true"></i></button>
                         </td>
                     </tr>
 
                     <div class="modal fade" id="UserEditModal{{ user.id }}" tabindex="-1" role="dialog"
-                         aria-labelledby="UserEditModalLabel{{ user.id }}" aria-hidden="true">
+                        aria-labelledby="UserEditModalLabel{{ user.id }}" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -149,17 +123,16 @@
                                         <div class="form-group">
                                             <label for="name" class="col-form-label">Name:</label>
                                             <input type="text" class="form-control" id="name" name="name"
-                                                   value="{{ user.name }}" required>
+                                                value="{{ user.name }}" required>
                                         </div>
                                         <div class=" form-group">
                                             <label for="email" class="col-form-label">Email:</label>
                                             <input type="text" class="form-control" id="email" name="email"
-                                                   value="{{ user.email }}" required>
+                                                value="{{ user.email }}" required>
                                         </div>
                                         <div class=" modal-footer">
                                             <button type="button" class="btn btn-secondary"
-                                                    data-dismiss="modal">Close
-                                            </button>
+                                                data-dismiss="modal">Close</button>
                                             <button type="submit" class="btn btn-primary">Update user</button>
                                         </div>
                                     </form>
@@ -168,14 +141,14 @@
                             </div>
                         </div>
                     </div>
-                {% endfor %}
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
     </div>
 
     <div class="modal fade" id="CreateModal" tabindex="-1" role="dialog" aria-labelledby="CreateModalLabel"
-         aria-hidden="true">
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -211,8 +184,24 @@
 
 
 
+    <div class="modal fade" id="DeleteBevestiging" tabindex="-1" role="dialog" aria-labelledby="EditModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="EditModalLabel">Weet je het zeker ?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <button type="button" class="btn btn-primary">Ja</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Nee</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
-
-{% endblock %}
+    {% endblock %}
 </body>
