@@ -9,7 +9,7 @@
         <button type="button" class="close" data-dismiss="alert" aria-label="Close" class="fade close">
             <span aria-hidden="true">&times;</span>
         </button>
-        {{mess}}
+        {{ mess }}
     </div>
     {% endfor %}
     <div class="nav nav-tabs" id="nav-tab" role="tablist" style="margin-top: 1em;">
@@ -29,7 +29,8 @@
                         <th scope="col">Beschrijving</th>
                         <th scope="col">
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CreateModal"
-                                style="float: right;" data-whatever="@mdo">Create video</button>
+                                style="float: right;" data-whatever="@mdo">Create video
+                            </button>
                             </button>
                         </th>
                     </tr>
@@ -38,13 +39,17 @@
                     {% for video in video_data %}
                     <tr>
                         <th scope="row">{{ video.id }}</th>
-                        <td>{{video.title}}</td>
-                        <td>{{video.beschrijving}}</td>
-                        <td><button type="button" class="btn btn-danger" data-toggle="modal"
-                                data-target="#DeleteBevestiging"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                        <td>{{ video.title }}</td>
+                        <td>{{ video.beschrijving }}</td>
+                        <td>
+                            <button type="button" class="btn btn-danger" data-toggle="modal"
+                                data-target="#DeleteBevestiging{{ video.id }}"><i class="fa fa-trash"
+                                    aria-hidden="true"></i>
+                            </button>
                             <button type="button" class="btn btn-primary" data-toggle="modal"
                                 data-target="#editModal{{ video.id }}" data-whatever="@mdo"><i class="fa fa-edit"
-                                    aria-hidden="true"></i></button>
+                                    aria-hidden="true"></i>
+                            </button>
                         </td>
                     </tr>
 
@@ -71,13 +76,34 @@
                                                 value="{{ video.beschrijving }}" name="beschrijving" required>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                                            </button>
                                             <button type="submit" class="btn btn-primary">Update video</button>
                                         </div>
                                     </form>
                                 </div>
 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="DeleteBevestiging{{ video.id }}" tabindex="-1" role="dialog"
+                        aria-labelledby="DeleteBevestigingModal{{ video.id }}" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="DeleteBevestigingModal{{ video.id }}">Weet je het zeker
+                                        ?</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="/admin/delete/{{video.id}}" method="POST">
+                                        <button type="submit" class="btn btn-primary">Ja</button>
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Nee</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -98,10 +124,12 @@
                     {% for user in user_data %}
                     <tr>
                         <th scope="row">{{ user.id }}</th>
-                        <td>{{user.name}}</td>
-                        <td>{{user.email}}</td>
-                        <td><button type="button" class="btn btn-danger" data-toggle="modal"
-                                data-target="#DeleteBevestiging"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>
+                            <button type="button" class="btn btn-danger" data-toggle="modal"
+                                data-target="#DeleteBevestiging"><i class="fa fa-trash" aria-hidden="true"></i>
+                            </button>
                             <button type="button" class="btn btn-primary" data-toggle="modal"
                                 data-target="#UserEditModal{{ user.id }}" data-whatever="@mdo"><i class="fab fa-joomla"
                                     aria-hidden="true"></i></button>
@@ -131,8 +159,8 @@
                                                 value="{{ user.email }}" required>
                                         </div>
                                         <div class=" modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                                            </button>
                                             <button type="submit" class="btn btn-primary">Update user</button>
                                         </div>
                                     </form>
@@ -184,23 +212,7 @@
 
 
 
-    <div class="modal fade" id="DeleteBevestiging" tabindex="-1" role="dialog" aria-labelledby="EditModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="EditModalLabel">Weet je het zeker ?</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <button type="button" class="btn btn-primary">Ja</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Nee</button>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
 
     {% endblock %}

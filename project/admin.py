@@ -32,17 +32,8 @@ def adminPanel():
 def edit_video(id):
     video = Video.query.get(id)
     video.title = request.form.get('title')
-    video.beschrijving = request.form.get('beschrijving')
     db.session.commit()
-    return redirect(f'/admin/edit/videopunten/{video.id}')
-
-@admin.route("/admin/edit/videopunten/<id>", methods=['GET'])
-@login_required
-def edit_video_punten(id):
-    video = Video.query.get(id)
-    return render_template('admin/editVideoPunten.html', title=video.title, beschrijving=video.beschrijving, path=video.href, videoPunten=video.data)
-
-
+    return render_template('admin/editVideoPunten.html')
 
 @admin.route("/admin/edit/user/<id>", methods=['POST'])
 @login_required
@@ -81,12 +72,17 @@ def create_post():
             return render_template('admin/videoPunten.html', path=path, title=title, beschrijving=beschrijving)
 
 
-    return render_template('admin/admin.html')
+    return render_template('admin/admin.html');
 
-@admin.route("/delete")
-def delete():
+@admin.route("/admin/delete/<id>", methods=['POST'])
+@login_required
+def delete_video(id):
+    flash(f"Gelukt! De video is verwijderd")
+    video_id = Video.query.filter_by(id=id).one()
+    path = "project/static/"+ video_id.href
+    print(path)
+    os.remove(path)
 
-    path = 'project/static/test.txt'
-    print(os.path.join(path))
-    test = os.path.join(path)
-    os.remove(test)
+    db.session.delete(video_id)
+    db.session.commit()
+    return redirect(f'/admin')
