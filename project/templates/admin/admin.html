@@ -9,22 +9,20 @@
             <div class="alert alert-success alert-dismissible fade show" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close" class="fade close">
             <span aria-hidden="true">&times;</span>
-        </button>
-        {{ mess }}
+        </button>        {{ mess }}
+                </div>
         {% endif %}
-
-    </div>
     {% endfor %}
-    <div class="nav nav-tabs" id="nav-tab" role="tablist" style="margin-top: 1em;">
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
         <a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
             aria-controls="nav-home" aria-selected="true">Videos</a>
         <a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
             aria-controls="nav-profile" aria-selected="false">Gebruikers</a>
     </div>
     <div class="tab-content" id="nav-tabContent">
-        <div style="overflow-y: scroll; max-height: 25em;" class=" tab-pane fade show active" id="nav-home"
+        <div class="geenScrollBar tab-pane fade show active" id="nav-home"
             role="tabpanel" aria-labelledby="nav-home-tab">
-            <table class="table" style=" max-height: 10em;">
+            <table class="table">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -32,7 +30,7 @@
                         <th scope="col">Beschrijving</th>
                         <th scope="col">
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CreateModal"
-                                style="float: right;" data-whatever="@mdo">Create video
+                                 data-whatever="@mdo">Create video
                             </button>
                             </button>
                         </th>
