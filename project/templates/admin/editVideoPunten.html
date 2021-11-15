@@ -1,21 +1,11 @@
 {% set active_page = "admin" %}
 {% extends "base.html" %}
-
 <body>
 {% block content %}
-
     <h1>VideoPunten</h1>
-
-    <p>Titel: {{ title }}</p>
-    <p>Beschrijving: {{ beschrijving }}</p>
-    <p>File: {{ file }}</p>
-    <p>videopunten: {{ videoPunten }}</p>
-
-
     <form method="post" action="/admin/video/{{ id }}/punten/edit/">
         <button type="submit">Opslaan</button>
     </form>
-
     <video
             id="example_video_1"
             class="video-js vjs-default-skin"
