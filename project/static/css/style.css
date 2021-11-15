@@ -140,17 +140,18 @@ body {
 }
 
 .form-button {
-    background-color: #719192;
-    border-color: #719192;
+    background-color: #1A237E;
+    border-color: #1A237E;
     color: #e6e6e6;
     font-weight: 900;
 
 }
 
 .form-button:hover {
-    background-color: #5F6769;
-    border-color: #5F6769;
+    background-color: #1A237E;
+    border-color: #1A237E;
     color: #e6e6e6;
+    cursor: pointer;
 }
 
 .button-l {
@@ -265,3 +266,37 @@ body {
     margin: 1em;
     padding: 1em;
     box-shadow: 1px 3px 6px gray}
+
+
+.pictureBackgroundLogin {
+    background-color: #FFF !important;
+    border: none !important;
+    padding-top: 3em;
+    margin-left: 0.1em !important;
+}
+
+.LoginFormFields {
+    padding-right: 3em !important;
+}
+
+
+.ResetPasswordContainer{
+    width: 30em;
+}
+
+.PasswordConfirmRequestSubmit{
+    background-color: #1A237E;
+    padding: 0.3em;
+    font-size: 15px;
+}
+
+.PasswordResetBackButtonLink:hover {
+    color: white;
+    text-decoration: none;
+}
+
+/* .backgroundDivLogin {
+    background: url('../../static/images/hoofdpagina-picture.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+} */
