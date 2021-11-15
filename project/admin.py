@@ -41,6 +41,7 @@ def edit_user(id):
     flash(f"Gelukt! Gegvens zijn aangepast")
     user = User.query.get(id)
     user.name = request.form.get('name')
+    user.email = request.form.get('email')
     db.session.commit()
     return redirect(url_for('admin.adminPanel'))
 
