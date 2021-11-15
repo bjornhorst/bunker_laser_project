@@ -13,6 +13,7 @@ body {
 }
 #container {
     height: 100VH;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     margin: 0 auto;
@@ -142,13 +143,11 @@ nav a:hover {
 
 
 /* Text Color */
-
 .text-darkyellow {
     color: #DFCDC3;
 }
 
 /* Lines */
-
 .line-b {
     border-bottom: 1px solid #719192 !important;
 }
@@ -286,8 +285,7 @@ nav a:hover {
 
 
 
-
-.geenScrollBar {
-    overflow-y: scroll;
-    height: calc(100vh - (86px + 48px + 56px + 43px + 48px)) !important;
-}
+.homepage-tegels {
+    margin: 1em;
+    padding: 1em;
+    box-shadow: 1px 3px 6px gray}
