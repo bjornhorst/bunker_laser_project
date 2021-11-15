@@ -51,7 +51,6 @@
                         {% set navigation_bar = [
                         ('/', 'index', 'Home'),
                         ('/videos', 'Videos', 'Videos'),
-                        ('/parsePython', 'parsePython', 'ParsePython'),
                         ('/admin', 'admin', 'Admin'),
                         ('/logout', 'logout','Logout'),
                         ] -%}
@@ -77,7 +76,7 @@
                 {% endblock %}
 
             </main>
-            <footer class="page-footer" id="footer">
+            <footer class="page-footer {%if active_page !="index" %} fixed-footer {%endif%}" id="footer">
                 <div class="footer-copyright text-center py-3" id="copyFooter">
                     &copy;2021 Copyright: Stichting Bunkerbehoud Terschelling | Deltion College Zwolle
                 </div>

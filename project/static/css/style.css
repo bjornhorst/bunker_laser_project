@@ -22,7 +22,7 @@ main {
     font-family: DejaVu Sans Mono, monospace;
     flex: 1;
     display: flex;
-    /*padding: 1em;*/
+    padding: 1em;
     /*min-height: 81.2vh;*/
     flex-direction: column;
 }
@@ -328,3 +328,19 @@ nav a:hover {
     background-repeat: no-repeat;
     background-size: cover;
 } */
+.fixed-footer{
+        width: 100%;
+        position: fixed;
+        background: #333;
+        padding: 10px 0;
+        color: #fff;
+    }
+    .fixed-footer{
+        bottom: 0;
+    }
+#footer{
+    width: 100%;
+    background: #333;
+    padding: 10px 0;
+    color: #fff;
+}

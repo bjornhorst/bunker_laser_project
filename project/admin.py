@@ -30,6 +30,7 @@ def adminPanel():
 def edit_video(id):
     video = Video.query.get(id)
     video.title = request.form.get('title')
+    video.beschrijving = request.form.get('beschrijving')
     db.session.commit()
     return redirect(f'/admin/edit/video/{id}')
     #return render_template('admin/editVideoPunten.html')
