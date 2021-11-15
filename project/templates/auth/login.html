@@ -3,44 +3,50 @@
 
 {% block content %}
 
-    <body class="main-bg">
-
-    <div class="login-container text-c">
-        {% if success == True %}
-        <div class="alert alert-success" role="alert">
-            {{ success_message }}
-        </div>
-        {% endif %}
-        <div>
-            <h1 class="logo-badge text-whitesmoke"><span class="fa fa-user-circle"></span></h1>
-        </div>
-        <h3 class="text-whitesmoke" style="padding-bottom: 0.5em">Login</h3>
-
-        <div class="container-content">
-            <form class="margin-t" method="POST" action="/login">
-                <div class="form-group">
-                    <input class="form-control" ptype="email" name="email" placeholder="Your Email" autofocus="">
+<body
+    style="background: url('../../static/images/hoofdpagina-picture.jpg'); background-repeat: no-repeat; background-size: 145%;">
+    <div class="backgroundDivLogin">
+        <div class="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-5 mx-auto">
+            <div class="card card0 border-0">
+                <div class="row d-flex">
+                    <div class="col-lg-6 ">
+                        <div class="card1 pb-5">
+                            <div class="row"> </div>
+                            <div class="row px-3 justify-content-center mt-4 mb-5 pictureBackgroundLogin"> <img
+                                    src="../../static/images/LogoBunkersTS2.png" class="image">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <form method="POST" action="/login" class="LoginFormFields">
+                            <div class="row px-3 loginForm""> <label class=" mb-1">
+                                <h6 class="mb-0 text-sm">Email Address</h6>
+                                </label> <input class="mb-4" type="text" name="email"
+                                    placeholder="Enter a valid email address">
+                            </div>
+                            <div class="row px-3"> <label class="mb-1">
+                                    <h6 class="mb-0 text-sm">Password</h6>
+                                </label> <input type="password" name="password" placeholder="Enter password"> </div>
+                            <div class="row px-3 mb-4">
+                                <div class="custom-control custom-checkbox custom-control-inline"> <input id="chk1"
+                                        type="checkbox" name="chk" class="custom-control-input"> <label for="chk1"
+                                        class="custom-control-label text-sm">Remember me</label> </div> <a
+                                    href="{{ url_for('auth.reset_password_request') }}"
+                                    class="ml-auto mb-0 text-sm">Forgot
+                                    Password?</a>
+                            </div>
+                            <div class="row mb-3 px-3"> <button type="submit"
+                                    class="btn btn-blue text-center">Login</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <input class="form-control" type="password" name="password" placeholder="Your Password">
-                </div>
-                <div class="field">
-                    <label class="checkbox">
-                        <input type="checkbox">
-                        Remember me
-                    </label>
-                </div>
-                <button type="submit" class="form-button button-l margin-b">Sign In</button>
-
-                <a class="text-darkyellow" href="{{ url_for('auth.reset_password_request') }}"><small>Forgot your password?</small></a>
-
-
-            </form>
+            </div>
 
         </div>
     </div>
-    </body>
-
+    </div>
+</body>
 {% endblock %}
 
 </html>

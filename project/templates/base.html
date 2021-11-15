@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/fontawesome.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/all.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css')}}" type="text/css">
 
     <script src="{{ url_for('static', filename='js/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
@@ -33,6 +34,7 @@
 </head>
 
 <body>
+    <div class="overlay">
         <div id="container">
             <header>
                 <nav class="navbar  navbar-expand-lg navbar-dark  scrolling-navbar" id="test">
@@ -81,5 +83,6 @@
                 </div>
             </footer>
         </div>
+    </div>
 
 </body>
