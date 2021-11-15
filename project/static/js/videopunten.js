@@ -85,7 +85,6 @@
                     data:jsonObj,
                     success: function (dataAJAX) {
                         location.reload();
-                        // or click related .related-products-control
                     }
                 });
             } else {
