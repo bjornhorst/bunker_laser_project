@@ -2,7 +2,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div style="margin-top: 2em; " class="container" >
+<div class="container videoContainer" >
   <div class="row">
     <div class="col-8">
       <div class="tab-content" id="pills-tabContent">
@@ -10,7 +10,7 @@
         <div class="tab-pane fade {%if videos.id == 1 %}show active{% endif %}" id="pills-video{{ videos.id }}"
           role="tabpanel" aria-labelledby="pills-video{{ videos.id }}-tab">
           <a onclick=" window.open(('static/{{ videos.href }}'), '_blank');">
-            <video style="width: 100%;" controls id="myvideo">
+            <video class="video2" controls id="myvideo">
               <source src="static/{{ videos.href }}" type="video/mp4">
             </video>
             <h3> {{ videos.title }}</h3>
@@ -53,6 +53,9 @@
     });
   });
 </script>
+
+
+
 {% endblock %}
 </body>
 
