@@ -10,7 +10,7 @@ def send_email(subject, sender, recipients, html_body):
 
 def send_password_reset_email(user):
     token = user.get_reset_password_token()
-    send_email('[Microblog] Reset Your Password',
+    send_email('[Bunker Terschelling] Weizig je wachtwoord',
                sender='bjornvdhors19@gmail.com',
                recipients=[user.email],
                # text_body=render_template('email/reset_password.txt',
