@@ -9,7 +9,6 @@ main {
     font-family: DejaVu Sans Mono, monospace;
     flex: 1;
     display: flex;
-    word-break: break-all;
     padding: 1em;
 }
 

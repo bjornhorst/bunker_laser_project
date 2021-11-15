@@ -11,9 +11,17 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/fontawesome.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/all.min.css') }}" type="text/css">
 
-    <script src="{{ url_for('static', filename='js/jquery-3.2.1.slim.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+    {# stylesheet for video markers   #}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/video-js.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/videojs.markers.min.css') }}" type="text/css">
+    {# scripts for video markers#}
+    <script src="{{ url_for('static', filename='js/video.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/videojs-markers.min.js') }}"></script>
+
+
 
     <style>
         #content {

@@ -27,13 +27,28 @@ def adminPanel():
 # def create():
 #     return render_template('admin/create.html');
 
-@admin.route("/admin/edit/<id>", methods=['POST'])
+@admin.route("/admin/edit/video/<id>", methods=['POST'])
 @login_required
 def edit_video(id):
     video = Video.query.get(id)
     video.title = request.form.get('title')
     db.session.commit()
-    return render_template('admin/editVideoPunten.html')
+    return redirect(f'/admin/edit/video/{id}')
+    #return render_template('admin/editVideoPunten.html')
+
+@admin.route("/admin/edit/video/<id>", methods=['GET'])
+@login_required
+def edit_video_get(id):
+    video = Video.query.get(id)
+    return render_template('admin/editVideoPunten.html', id=id ,title=video.title, beschrijving=video.beschrijving, file=video.href, videoPunten=video.videoPunten)
+
+@admin.route("/admin/video/<id>/punten/edit/", methods=['POST'])
+@login_required
+def video_punten_edit_post(id):
+    videoPunten = request.form.get('punten')
+    flash(f'{id} = aangepast')
+    return redirect('/admin')
+
 
 @admin.route("/admin/edit/user/<id>", methods=['POST'])
 @login_required
