@@ -3,11 +3,11 @@ var video = videojs('example_video_1');
 //load markers
 video.markers({
     markers: [
-        {
-            time: 0,
-            text: "begin",
-            class: 'hide-marker'
-        },
+        // {
+        //     time: 0,
+        //     text: "begin",
+        //     class: 'hide-marker'
+        // },
     ]
 });
 
@@ -72,7 +72,7 @@ function saveMarkers(id) {
         $(markerarray).each(function (key, marker) {
             timeMarks = {};
             timeMarks['time'] = marker['time'];
-            timeMarks['laserOnOff'] = marker['text'];
+            timeMarks['text'] = marker['text'];
             console.log(marker['time']);
             console.log(marker['text']);
             jsonObj.push(timeMarks);

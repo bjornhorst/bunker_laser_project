@@ -1,3 +1,5 @@
+from time import sleep
+
 from flask import Blueprint, render_template, request, redirect, flash, url_for
 from flask_login import login_required
 from project import app
@@ -22,10 +24,6 @@ def adminPanel():
     user_data = User.query.all()
     return render_template('admin/admin.html', video_data=video_data, user_data=user_data);
 
-# @admin.route("/admin/create", methods=['GET'])
-# @login_required
-# def create():
-#     return render_template('admin/create.html');
 
 @admin.route("/admin/edit/video/<id>", methods=['POST'])
 @login_required
@@ -42,11 +40,22 @@ def edit_video_get(id):
     video = Video.query.get(id)
     return render_template('admin/editVideoPunten.html', id=id ,title=video.title, beschrijving=video.beschrijving, file=video.href, videoPunten=video.videoPunten)
 
+@admin.route("/test/<id>", methods=['GET'])
+@login_required
+def test(id):
+    video = Video.query.get(id)
+    return video.videoPunten
+
+
+# This route is used for new video points and to edit points
 @admin.route("/admin/video/<id>/punten/edit/", methods=['POST'])
 @login_required
 def video_punten_edit_post(id):
-    videoPunten = request.form.get('punten')
-    flash(f'{id} = aangepast')
+    videoPunten = request.form.get('videopunten')
+    video = Video.query.get(id)
+    video.videoPunten = videoPunten
+    db.session.commit()
+    flash('De punten zijn toegevoegd of aangepast!')
     return redirect('/admin')
 
 
@@ -84,10 +93,18 @@ def create_post():
             # add the new video to the database
             db.session.add(new_video)
             db.session.commit()
-            return render_template('admin/videoPunten.html', path=path, title=title, beschrijving=beschrijving)
-
-
+            vid = Video.query.order_by(Video.id.desc()).first()
+            id = vid.id
+            return redirect(f'/admin/video/{id}/add/punten')
+            #return render_template('admin/videoPunten.html', path=path, title=title, beschrijving=beschrijving)
     return render_template('admin/admin.html');
+
+@admin.route("/admin/video/<id>/add/punten", methods=['GET'])
+@login_required
+def add_video_points(id):
+    video = Video.query.get(id)
+    # path = video.href
+    return render_template('admin/videoPunten.html', file=video.href, id=id);
 
 @admin.route("/admin/delete/<id>", methods=['POST'])
 @login_required
@@ -101,3 +118,4 @@ def delete_video(id):
     db.session.delete(video_id)
     db.session.commit()
     return redirect(f'/admin')
+
