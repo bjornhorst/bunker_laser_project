@@ -121,3 +121,16 @@ def delete_video(id):
     db.session.commit()
     return redirect(f'/admin')
 
+
+@admin.route("/motor/call/m1/rechts")
+@login_required
+def m1Rechts():
+
+    #return "HUUUH"
+    return "PETE"
+
+@admin.route("/motor/")
+@login_required
+def motor():
+
+    return render_template('/admin/motor/test.html')

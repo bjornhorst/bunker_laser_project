@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<button onclick="getShit()">
+HUUUUUUUUUH
+</button>
+    <script>
+    function getShit(){
+         $.get('/motor/call/m1/rechts', function (data) {
+            console.log(data)
+        });
+    }
+
+    </script>
+{% endblock %}
