@@ -3,6 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
+    <title>Bunker Seeburgtische</title>
+    <link rel="shortcut icon" type="image/jpg" href="../static/images/LogoBunkersTS2.png" />
+
     <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -15,7 +18,7 @@
     <script src="{{ url_for('static', filename='js/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
-    {# stylesheet for video markers   #}
+    {# stylesheet for video markers #}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/video-js.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/videojs.markers.min.css') }}" type="text/css">
     {# scripts for video markers#}
@@ -39,7 +42,8 @@
             <header>
                 <nav class="navbar  navbar-expand-lg navbar-dark  scrolling-navbar" id="test">
                     <a class="navbar-brand" href="{{ url_for('main.index') }}"><img class="nav-img-logo"
-                            src="{{ url_for('static', filename='images/LogoBunkersTS2.png') }}" width="100px" height="60px"></img></a>
+                            src="{{ url_for('static', filename='images/LogoBunkersTS2.png') }}" width="100px"
+                            height="60px"></img></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -76,7 +80,7 @@
                 {% endblock %}
 
             </main>
-            <footer class="page-footer {%if active_page !="index" %} fixed-footer {%endif%}" id="footer">
+            <footer class="page-footer {%if active_page !=" index" %} fixed-footer {%endif%}" id="footer">
                 <div class="footer-copyright text-center py-3" id="copyFooter">
                     &copy;2021 Copyright: Stichting Bunkerbehoud Terschelling | Deltion College Zwolle
                 </div>

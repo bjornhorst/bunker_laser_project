@@ -13,16 +13,19 @@ admin = Blueprint('admin', __name__)
 UPLOAD_FOLDER = 'project/static/videos'
 ALLOWED_EXTENSIONS = {'mp4'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 
 @admin.route("/admin", methods=['GET'])
 @login_required
 def adminPanel():
     video_data = Video.query.all()
     user_data = User.query.all()
-    return render_template('admin/admin.html', video_data=video_data, user_data=user_data);
+    return render_template('admin/admin.html', video_data=video_data, user_data=user_data)
 
 
 @admin.route("/admin/edit/video/<id>", methods=['POST'])
@@ -33,13 +36,15 @@ def edit_video(id):
     video.beschrijving = request.form.get('beschrijving')
     db.session.commit()
     return redirect(f'/admin/edit/video/{id}')
-    #return render_template('admin/editVideoPunten.html')
+    # return render_template('admin/editVideoPunten.html')
+
 
 @admin.route("/admin/edit/video/<id>", methods=['GET'])
 @login_required
 def edit_video_get(id):
     video = Video.query.get(id)
-    return render_template('admin/editVideoPunten.html', id=id ,title=video.title, beschrijving=video.beschrijving, file=video.href, videoPunten=video.videoPunten)
+    return render_template('admin/editVideoPunten.html', id=id, title=video.title, beschrijving=video.beschrijving, file=video.href, videoPunten=video.videoPunten)
+
 
 @admin.route("/test/<id>", methods=['GET'])
 @login_required
@@ -70,6 +75,7 @@ def edit_user(id):
     db.session.commit()
     return redirect(url_for('admin.adminPanel'))
 
+
 @admin.route("/admin/create", methods=['POST'])
 @login_required
 def create_post():
@@ -91,29 +97,32 @@ def create_post():
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             path = 'videos/' + filename
 
-            new_video = Video(title=title, beschrijving=beschrijving, href=path)
+            new_video = Video(
+                title=title, beschrijving=beschrijving, href=path)
             # add the new video to the database
             db.session.add(new_video)
             db.session.commit()
             vid = Video.query.order_by(Video.id.desc()).first()
             id = vid.id
             return redirect(f'/admin/video/{id}/add/punten')
-            #return render_template('admin/videoPunten.html', path=path, title=title, beschrijving=beschrijving)
-    return render_template('admin/admin.html');
+            # return render_template('admin/videoPunten.html', path=path, title=title, beschrijving=beschrijving)
+    return render_template('admin/admin.html')
+
 
 @admin.route("/admin/video/<id>/add/punten", methods=['GET'])
 @login_required
 def add_video_points(id):
     video = Video.query.get(id)
     # path = video.href
-    return render_template('admin/videoPunten.html', file=video.href, id=id);
+    return render_template('admin/videoPunten.html', file=video.href, id=id)
+
 
 @admin.route("/admin/delete/<id>", methods=['POST'])
 @login_required
 def delete_video(id):
     flash(f"Gelukt! De video is verwijderd")
     video_id = Video.query.filter_by(id=id).one()
-    path = "project/static/"+ video_id.href
+    path = "project/static/" + video_id.href
     print(path)
     os.remove(path)
 
@@ -128,16 +137,19 @@ def m1Links():
 
     return "Motor X links"
 
+
 @admin.route("/motor/call/m1/rechts")
 @login_required
 def m1Rechts():
     return "Motor X rechts"
+
 
 @admin.route("/motor/call/m2/links")
 @login_required
 def m2Links():
 
     return "Motor Y links"
+
 
 @admin.route("/motor/call/m2/rechts")
 @login_required

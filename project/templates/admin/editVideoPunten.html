@@ -119,35 +119,35 @@
             }
             updateMarkerList();
         }
-        function saveMarkers(id) {
-            var proceed = confirm("Weet je zeker dat je alle punten hebt toegevoegd?");
-            if (proceed) {
-                //proceed
-                jsonObj = [];
-                var markerarray = video.markers.getMarkers();
-                $(markerarray).each(function (key, marker) {
-                    timeMarks = {};
-                    timeMarks['time'] = marker['time'];
-                    timeMarks['text'] = marker['text'];
-                    console.log(marker['time']);
-                    console.log(marker['text']);
-                    jsonObj.push(timeMarks);
-                });
-                console.log(jsonObj);
-                str = JSON.stringify(jsonObj);
-                var url = '/admin/video/' + id + '/punten/edit/';
-                var form = $('<form action="' + url + '" method="post" style="visibility: hidden">' +
-                    '<input type="text" name="videopunten" value=' + str + ' />' +
-                    '</form>');
-                $('body').append(form);
-                console.log(str); // Logs output to dev tools console.
-                form.submit();
+            function saveMarkers(id) {
+                var proceed = confirm("Weet je zeker dat je alle punten hebt toegevoegd?");
+                if (proceed) {
+                    //proceed
+                    jsonObj = [];
+                    var markerarray = video.markers.getMarkers();
+                    $(markerarray).each(function (key, marker) {
+                        timeMarks = {};
+                        timeMarks['time'] = marker['time'];
+                        timeMarks['text'] = marker['text'];
+                        console.log(marker['time']);
+                        console.log(marker['text']);
+                        jsonObj.push(timeMarks);
+                    });
+                    console.log(jsonObj);
+                    str = JSON.stringify(jsonObj);
+                    var url = '/admin/video/' + id + '/punten/edit/';
+                    var form = $('<form action="' + url + '" method="post" style="visibility: hidden">' +
+                        '<input type="text" name="videopunten" value=' + str + ' />' +
+                        '</form>');
+                    $('body').append(form);
+                    console.log(str); // Logs output to dev tools console.
+                    form.submit();
 
-            } else {
-                //don't proceed
+                } else {
+                    //don't proceed
+                }
             }
-        }
-
+    
         function getX_Links() {
             $.get('/motor/call/m1/links', function (data) {
                 console.log(data)
