@@ -134,3 +134,16 @@ def m1Rechts():
 def motor():
 
     return render_template('/admin/motor/test.html')
+
+
+@admin.route("/script/start")
+@login_required
+def startScript():
+    os.system("python project/static/scripts/script.py")
+    return "test"
+
+@admin.route("/script/stop")
+@login_required
+def startStop():
+    os.system("python project/static/scripts/test2.py")
+    return "test"

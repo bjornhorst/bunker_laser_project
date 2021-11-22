@@ -4,6 +4,7 @@ import os, sys, signal
 import time
 import csv
 pid=os.getpid ()
+print("HIJ WERKT NU NOG")
 with open ('pid.csv','w') as csvfile:
     wr=csv.writer(csvfile)
     wr.writerow ( [ 'WORK1',pid])

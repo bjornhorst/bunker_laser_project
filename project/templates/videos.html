@@ -2,57 +2,84 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container videoContainer" >
-  <div class="row">
-    <div class="col-8">
-      <div class="tab-content" id="pills-tabContent">
-        {% for videos in video_data%}
-        <div class="tab-pane fade {%if videos.id == 1 %}show active{% endif %}" id="pills-video{{ videos.id }}"
-          role="tabpanel" aria-labelledby="pills-video{{ videos.id }}-tab">
-{#          <a onclick=" window.open(('static/{{ videos.href }}'), '_blank');">#}
-            <video class="video2" controls id="myvideo">
-              <source src="static/{{ videos.href }}" type="video/mp4">
-            </video>
-            <h3> {{ videos.title }}</h3>
-            <p>{{ videos.beschrijving }}</p>
-          </a>
+    <div class="container videoContainer">
+        <div class="row">
+            <div class="col-8">
+                <div class="tab-content" id="pills-tabContent">
+                    {% for videos in video_data %}
+                        <div class="tab-pane fade {% if videos.id == 1 %}show active{% endif %}"
+                             id="pills-video{{ videos.id }}"
+                             role="tabpanel" aria-labelledby="pills-video{{ videos.id }}-tab">
+
+                            <video
+                                    id="example_video_{{ videos.id }}"
+                                    class="video-js vjs-default-skin"
+                                    controls
+                                    preload="auto"
+                                    width="730px !important"
+                                    height="360"
+                                    data-setup='{"width": 640, "height": 360}'>
+                                <source src="{{ url_for('static', filename=videos.href) }}" type='video/mp4'/>
+                            </video>
+                            <script>
+                                var player{{ videos.id }} = videojs("example_video_{{ videos.id }}");
+                                player{{ videos.id }}.on('playing', function () {
+                                    player{{ videos.id }}.requestFullscreen();
+                                    $.get('/script/start', function (data) {
+                                        console.log(data)
+                                    });
+                                });
+                                player{{ videos.id }}.on('pause', function () {
+                                    // do the action
+                                    $.get('/script/stop', function (data) {
+                                        console.log(data)
+                                    });
+                                });
+                            </script>
+                            <h3> {{ videos.title }}</h3>
+                            <p>{{ videos.beschrijving }}</p>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <ul class="nav mb-3 ulTab videoPaginaLijst" id="pills-tab" role="tablist">
+                {% for videos in video_data %}
+                    <li class="nav-item" role="presentation">
+                        <a class="{% if videos.id == 1 %}active{% endif %} nav-link text-center "
+                           id="pills-video{{ videos.id }}-tab"
+                           data-toggle="pill" href="#pills-video{{ videos.id }}" role="tab"
+                           aria-controls="pills-video{{ videos.id }}"
+                           aria-selected="true" data-bs-target="#pills-video{{ videos.id }}">
+                            <video style="width: 200px;"
+                                   oncontextmenu="return false; ">
+                                <source src="static/{{ videos.href }} " type="video/mp4">
+                            </video>
+                            <br>{{ videos.title }}
+                        </a>
+                    </li>
+
+                {% endfor %}
+
+            </ul>
         </div>
-        {% endfor %}
-      </div>
     </div>
-    <ul class="nav mb-3 ulTab videoPaginaLijst" id="pills-tab" role="tablist">
-      {% for videos in video_data%}
-      <li class="nav-item" role="presentation">
-        <a class="{%if videos.id == 1 %}active{% endif %} nav-link text-center " id="pills-video{{ videos.id }}-tab"
-          data-toggle="pill" href="#pills-video{{ videos.id }}" role="tab" aria-controls="pills-video{{ videos.id }}"
-          aria-selected="true" data-bs-target="#pills-video{{ videos.id }}">
-            <video style="width: 200px;"
-            oncontextmenu="return false; ">
-            <source src="static/{{ videos.href }} " type="video/mp4">
-          </video><br>{{ videos.title }}
-        </a>
-      </li>
-
-      {% endfor %}
-
-    </ul>
-  </div>
-</div>
 
 
-<script type="text/javascript">
-  $(function() {
-    $('a[data-toggle="pill"]').on('shown.bs.tab', function(e) {
-      $('.tab-pane:not(.active)').each(function(idx,el){
-        var vid = $(this).find('video');
-        if(!vid.paused)
-        {
-          vid.get(0).pause();
-        }
-      });
+    <script type="text/javascript">
+    $(function () {
+        $('a[data-toggle="pill"]').on('shown.bs.tab', function (e) {
+            $('.tab-pane:not(.active)').each(function (idx, el) {
+                var vid = $(this).find('video');
+                if (!vid.paused) {
+                    vid.get(0).pause();
+                }
+            });
+        });
     });
-  });
-</script>
+
+    </script>
+
 
 
 
