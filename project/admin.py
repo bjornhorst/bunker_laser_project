@@ -132,7 +132,7 @@ def m1Links():
 @login_required
 def m1Rechts():
     return "Motor X rechts"
-#####################################################################
+
 @admin.route("/motor/call/m2/links")
 @login_required
 def m2Links():
