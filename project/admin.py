@@ -122,15 +122,24 @@ def delete_video(id):
     return redirect(f'/admin')
 
 
+@admin.route("/motor/call/m1/links")
+@login_required
+def m1Links():
+
+    return "Motor X links"
+
 @admin.route("/motor/call/m1/rechts")
 @login_required
 def m1Rechts():
-
-    #return "HUUUH"
-    return "PETE"
-
-@admin.route("/motor/")
+    return "Motor X rechts"
+#####################################################################
+@admin.route("/motor/call/m2/links")
 @login_required
-def motor():
+def m2Links():
 
-    return render_template('/admin/motor/test.html')
+    return "Motor Y links"
+
+@admin.route("/motor/call/m2/rechts")
+@login_required
+def m2Rechts():
+    return "Motor Y rechts"
