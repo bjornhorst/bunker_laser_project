@@ -1,22 +1,16 @@
 {% set active_page = "admin" %}
 {% extends "base.html" %}
-<body>
-{% block content %}
+
+<body onload="updateMarkerList()">
+    {% block content %}
     <h1>VideoPunten</h1>
     <div class="container">
         <div class="row">
             <div class="col-xs-6">
 
-                <video
-                        id="example_video_1"
-                        class="video-js vjs-default-skin"
-                        controls
-                        preload="auto"
-                        autoplay
-                        width="640"
-                        height="360"
-                        data-setup='{"width": 640, "height": 360}'>
-                    <source src="{{ url_for('static', filename=file) }}" type='video/mp4'/>
+                <video id="example_video_1" class="video-js vjs-default-skin" controls preload="auto" autoplay
+                    width="640" height="360" data-setup='{"width": 640, "height": 360}'>
+                    <source src="{{ url_for('static', filename=file) }}" type='video/mp4' />
                 </video>
                 <button onclick="addMarkerLaserOn()" class="btn btn-primary">
                     Laser aan
@@ -33,11 +27,30 @@
                 <div id="videdPuntenTable" class="m-3">
                     lijst
                 </div>
+
+
             </div>
+        </div>
+        <br>
+        <div>
+            <button onclick="getX_Links()" class="btn btn-primary">
+                Motor X links
+            </button>
+            <button onclick="getX_Rechts()" class="btn btn-primary">
+                Motor X rechts
+            </button>
+            <button onclick="getY_Links()" class="btn btn-primary">
+                Motor Y links
+            </button>
+            <button onclick="getY_Rechts()" class="btn btn-primary">
+                Motor Y rechts
+            </button>
+
         </div>
     </div>
 
-{#            <script src="{{ url_for('static', filename='js/videoPuntenEdit.js') }}" type="application/javascript"></script>#}
+    {#
+    <script src="{{ url_for('static', filename='js/videoPuntenEdit.js') }}" type="application/javascript"></script>#}
     <link href="{{ url_for('static', filename='css/videopunten.css') }}" rel="stylesheet">
 
     <script>
@@ -49,12 +62,10 @@
             video.markers({
                 markers: data1,
             });
-            updateMarkerList();
+            setTimeout(() => { updateMarkerList(); }, 50);
         });
 
-
         // load video object
-
 
         function addMarkerLaserOn() {
             console.log("current time = " + video.currentTime);
@@ -81,15 +92,16 @@
             $("#videdPuntenTable").html("");
             var button = "<button onclick='removeMarker(" + markerId + ")'>verwijderen</button>";
             var markerTable = $("<table>").addClass("tbl_sm");
-            var tr = $("<tr>")  // maak header row met td's aan
+            var tr = $("<tr>")
+                // maak header row met td's aan
                 .append($("<th>").html("Tijd"))
                 .append($("<th>").html("aan of uit"))
                 .append($("<th>").html("Verwijder"));
             markerTable.append(tr);
             $(vidList).each(function (key, marker) {
-                //console.log( beer );
                 if (key != 0) {
-                    var tr = $("<tr>")  // maak header row met td's aan
+                    var tr = $("<tr>")
+                        // maak header row met td's aan
                         .append($("<td>").html(marker.time))
                         .append($("<td>").html(marker.text))
                         .append($("<td><button onclick='removeMarker(" + markerId + ")'>verwijderen</button>"))
@@ -107,36 +119,58 @@
             }
             updateMarkerList();
         }
+            function saveMarkers(id) {
+                var proceed = confirm("Weet je zeker dat je alle punten hebt toegevoegd?");
+                if (proceed) {
+                    //proceed
+                    jsonObj = [];
+                    var markerarray = video.markers.getMarkers();
+                    $(markerarray).each(function (key, marker) {
+                        timeMarks = {};
+                        timeMarks['time'] = marker['time'];
+                        timeMarks['text'] = marker['text'];
+                        console.log(marker['time']);
+                        console.log(marker['text']);
+                        jsonObj.push(timeMarks);
+                    });
+                    console.log(jsonObj);
+                    str = JSON.stringify(jsonObj);
+                    var url = '/admin/video/' + id + '/punten/edit/';
+                    var form = $('<form action="' + url + '" method="post" style="visibility: hidden">' +
+                        '<input type="text" name="videopunten" value=' + str + ' />' +
+                        '</form>');
+                    $('body').append(form);
+                    console.log(str); // Logs output to dev tools console.
+                    form.submit();
 
-        function saveMarkers(id) {
-            var proceed = confirm("Weet je zeker dat je alle punten hebt toegevoegd?");
-            if (proceed) {
-                //proceed
-                jsonObj = [];
-                var markerarray = video.markers.getMarkers();
-                $(markerarray).each(function (key, marker) {
-                    timeMarks = {};
-                    timeMarks['time'] = marker['time'];
-                    timeMarks['text'] = marker['text'];
-                    console.log(marker['time']);
-                    console.log(marker['text']);
-                    jsonObj.push(timeMarks);
-                });
-                console.log(jsonObj);
-                str = JSON.stringify(jsonObj);
-                var url = '/admin/video/' + id + '/punten/edit/';
-                var form = $('<form action="' + url + '" method="post" style="visibility: hidden">' +
-                    '<input type="text" name="videopunten" value=' + str + ' />' +
-                    '</form>');
-                $('body').append(form);
-                console.log(str); // Logs output to dev tools console.
-                form.submit();
-
-            } else {
-                //don't proceed
+                } else {
+                    //don't proceed
+                }
             }
+    
+        function getX_Links() {
+            $.get('/motor/call/m1/links', function (data) {
+                console.log(data)
+            });
+        }
 
+        function getX_Rechts() {
+            $.get('/motor/call/m1/rechts', function (data) {
+                console.log(data)
+            });
+        }
+
+        function getY_Links() {
+            $.get('/motor/call/m2/links', function (data) {
+                console.log(data)
+            });
+        }
+
+        function getY_Rechts() {
+            $.get('/motor/call/m2/rechts', function (data) {
+                console.log(data)
+            });
         }
     </script>
-{% endblock %}
+    {% endblock %}
 </body>

@@ -13,6 +13,8 @@ admin = Blueprint('admin', __name__)
 UPLOAD_FOLDER = 'project/static/videos'
 ALLOWED_EXTENSIONS = {'mp4'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -35,11 +37,13 @@ def edit_video(id):
     return redirect(f'/admin/edit/video/{id}')
     #return render_template('admin/editVideoPunten.html')
 
+
 @admin.route("/admin/edit/video/<id>", methods=['GET'])
 @login_required
 def edit_video_get(id):
     video = Video.query.get(id)
     return render_template('admin/editVideoPunten.html', id=id ,title=video.title, beschrijving=video.beschrijving, file=video.href, videoPunten=video.videoPunten)
+
 
 @admin.route("/test/<id>", methods=['GET'])
 @login_required
@@ -69,6 +73,7 @@ def edit_user(id):
     user.email = request.form.get('email')
     db.session.commit()
     return redirect(url_for('admin.adminPanel'))
+
 
 @admin.route("/admin/create", methods=['POST'])
 @login_required
@@ -122,16 +127,32 @@ def delete_video(id):
     return redirect(f'/admin')
 
 
+@admin.route("/motor/call/m1/links")
+@login_required
+def m1Links():
+
+    return "Motor X links"
+
+
 @admin.route("/motor/call/m1/rechts")
 @login_required
 def m1Rechts():
+    return "Motor X rechts"
 
     #return "HUUUH"
     return "PETE"
 
-@admin.route("/motor/")
+@admin.route("/motor/call/m2/links")
 @login_required
-def motor():
+def m2Links():
+
+    return "Motor Y links"
+
+
+@admin.route("/motor/call/m2/rechts")
+@login_required
+def m2Rechts():
+    return "Motor Y rechts"
 
     return render_template('/admin/motor/test.html')
 

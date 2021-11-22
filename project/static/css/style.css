@@ -91,6 +91,19 @@ nav a:hover {
     font-weight: 900;
     text-align: center;
 }
+.homeImgTitle{
+    color: white;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    max-width: 600px;
+    top: 4em;
+    font-size: 50px;
+    font-weight: bold;
+    text-shadow: 3px 3px #000000;
+
+}
 .homeIcon{
     font-size: 30px
 }
@@ -106,8 +119,9 @@ nav a:hover {
 .geenScrollBar {
     overflow-y: scroll;
     height: calc(100vh - (86px + 48px + 56px + 43px + 48px)) !important;
-
 }
+
+
 /*Videopage CSS */
 .videoPaginaLijst {
     display: flex;
