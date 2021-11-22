@@ -132,12 +132,12 @@ nav a:hover {
     overflow-x: hidden;
     max-height: 40em;
     padding-left: 0;
-    height: calc(100vh - (86px + 48px + 56px + 43px + 48px)) !important;
+    height: calc(100vh - (86px + 48px + 56px + 36px + 48px)) !important;
     flex-wrap: nowrap !important;
-    margin-left: 5em;
+    margin-left: 3em;
 }
 .videoContainer{
-    margin-top: 2em
+    margin-top: 0.7em
 }
 .main-preview-player {
     display: flex;

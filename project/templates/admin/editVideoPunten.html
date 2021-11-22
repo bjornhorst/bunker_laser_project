@@ -31,25 +31,34 @@
 
             </div>
         </div>
-        <br>
+        
+        <div class="container">
+            <div class="row">
+              <div class="col-sm">
+                <button type="button" onClick="getX_Links()" class="btn btn-primary">
+                    Motor X links
+                </button> 
+                <button onclick="getX_Rechts()" class="btn btn-primary">
+                    Motor X rechts
+                </button>
+                <p>X motor maakt <a id="stappenX">0</a> stappen</p>
+              </div>
+              <div class="col-sm">
+                <button onclick="getY_Links()" class="btn btn-primary">
+                    Motor Y links
+                </button>
+                <button onclick="getY_Rechts()" class="btn btn-primary">
+                    Motor Y rechts
+                </button>
+                <p>Y motor maakt <a id="stappenY">0</a> stappen</p>
+              </div>
+
+            </div>
+          </div>
         <div>
-            <button type="button" onClick="getX_Links()" class="btn btn-primary">
-                Motor X links
-            </button> 
-            <button onclick="getX_Rechts()" class="btn btn-primary">
-                Motor X rechts
-            </button>
-            <p>X motor maakt <a id="stappenX">0</a> stappen</p>
 
-            <button onclick="getY_Links()" class="btn btn-primary">
-                Motor Y links
-            </button>
-            <button onclick="getY_Rechts()" class="btn btn-primary">
-                Motor Y rechts
-            </button>
-            <p>Y motor maakt <a id="stappenY">0</a> stappen</p>
 
-        </div>
+           
     </div>
 
     {#
