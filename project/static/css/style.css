@@ -133,10 +133,9 @@ nav a:hover {
     padding-left: 0;
     height: calc(100vh - (86px + 48px + 56px + 43px + 48px)) !important;
     flex-wrap: nowrap !important;
-    margin-left: 5em;
 }
 .videoContainer{
-    margin-top: 2em
+    margin-top: 0.5em
 }
 .main-preview-player {
     display: flex;
