@@ -25,7 +25,8 @@
                                 var player{{ videos.id }} = videojs("example_video_{{ videos.id }}");
                                 player{{ videos.id }}.on('playing', function () {
                                     player{{ videos.id }}.requestFullscreen();
-                                    $.get('/script/start', function (data) {
+                                    url = '/script/start/' + player{{ videos.id }}.currentTime();
+                                    $.get(url, function (data) {
                                         console.log(data)
                                     });
                                 });

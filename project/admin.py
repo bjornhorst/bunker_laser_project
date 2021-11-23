@@ -147,10 +147,11 @@ def m2Links():
 def m2Rechts():
     return "Motor Y rechts"
 
-@admin.route("/script/start")
+@admin.route("/script/start/<time>")
 @login_required
-def startScript():
-    os.system("python project/static/scripts/script.py")
+def startScript(time):
+
+    os.system("python project/static/scripts/script.py "+ time)
     return "test"
 
 @admin.route("/script/stop")
