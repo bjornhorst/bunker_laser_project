@@ -105,6 +105,7 @@ nav a:hover {
     text-shadow: 3px 3px #000000;
 
 }
+
 .homeIcon{
     font-size: 30px
 }
@@ -354,4 +355,13 @@ nav a:hover {
     background: #333;
     padding: 10px 0;
     color: #fff;
+}
+
+.puntenToevoegenContainer{
+    margin-bottom: 3em;
+    text-align: center;
+}
+
+.puntenToevoegenButtons{
+    text-align: center;
 }
