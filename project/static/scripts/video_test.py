@@ -1,12 +1,5 @@
 import time
 
-
-
-
-
-
-
-
 def start_time_loop(start):
     a = [[3, True], [6, False], [15, True], [20, False], [35, True], [50, False]]
     i = 0
