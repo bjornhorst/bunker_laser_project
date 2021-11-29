@@ -6,7 +6,8 @@
     <title>{{ active_page }}</title>
     <link rel="icon" type="image/x-icon" href="../static/images/LogoBunkersTS2.png">
 
-    <meta name=" viewport"
+    <meta name=" viewport" <title>Bunker Seeburgtische - {{ active_page }}</title>
+    <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
@@ -53,9 +54,9 @@
 
                         {% if current_user.is_authenticated %}
                         {% set navigation_bar = [
-                        ('/', 'index', 'Home'),
+                        ('/', 'Home', 'Home'),
                         ('/videos', 'Videos', 'Videos'),
-                        ('/admin', 'admin', 'Admin'),
+                        ('/admin', 'Admin', 'Admin'),
                         ('/logout', 'logout','Logout'),
                         ] -%}
                         {% else %}
@@ -64,7 +65,7 @@
 
                         ] -%}
                         {% endif %}
-                        {% set active_page = active_page|default('index') -%}
+                        {% set active_page = active_page|default('Home') -%}
                         <ul class=" navigation navbar-nav ml-auto menu">
                             {% for href, id, caption in navigation_bar %}
                             <li {% if id==active_page %} class="active" {% endif %}><a class="nav-link"
@@ -75,16 +76,20 @@
                     </div>
                 </nav>
             </header>
-            <main {%if active_page=="index" %} style="padding: 0 !important;" {%endif%}>
+            <main {%if active_page=="Home" %} style="padding: 0 !important;" {%endif%}>
                 {% block content %}
                 {% endblock %}
 
             </main>
-            <footer class="page-footer {%if active_page !=" index" %} fixed-footer {%endif%}" id="footer">
-                <div class="footer-copyright text-center py-3" id="copyFooter">
-                    &copy;2021 Copyright: Stichting Bunkerbehoud Terschelling | Deltion College Zwolle
-                </div>
-            </footer>
+            <<<<<<< Updated upstream <footer class="page-footer {%if active_page !=" index" %} fixed-footer {%endif%}"
+                id="footer">
+                =======
+                <footer class="page-footer {%if active_page !=" Home" %} fixed-footer {%endif%}" id="footer">
+                    >>>>>>> Stashed changes
+                    <div class="footer-copyright text-center py-3" id="copyFooter">
+                        &copy;2021 Copyright: Stichting Bunkerbehoud Terschelling | Deltion College Zwolle
+                    </div>
+                </footer>
         </div>
     </div>
 
