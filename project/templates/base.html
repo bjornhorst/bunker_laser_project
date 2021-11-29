@@ -81,14 +81,13 @@
                 {% endblock %}
 
             </main>
-            <footer class="page-footer {%if active_page !=" Home" %} fixed-footer {%endif%}" id="footer">
 
-                <footer class="page-footer {%if active_page !=" Home" %} fixed-footer {%endif%}" id="footer">
+            <footer class="page-footer {%if active_page !="Home" and active_page !="edit_punten" %} fixed-footer {%endif%}" id="footer">
 
-                    <div class="footer-copyright text-center py-3" id="copyFooter">
-                        &copy;2021 Copyright: Stichting Bunkerbehoud Terschelling | Deltion College Zwolle
-                    </div>
-                </footer>
+                <div class="footer-copyright text-center py-3" id="copyFooter">
+                    &copy;2021 Copyright: Stichting Bunkerbehoud Terschelling | Deltion College Zwolle
+                </div>
+            </footer>
         </div>
     </div>
 
