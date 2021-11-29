@@ -5,13 +5,14 @@
     {% block content %}
     <h1>Adminpanel</h1>
     {% for mess in get_flashed_messages() %}
-        {% if mess != "Please log in to access this page." and mess != "Check your email for the instructions to reset your password" %}
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
+    {% if mess != "Please log in to access this page." and mess != "Check your email for the instructions to reset your
+    password" and mess != "Please check your login details and try again." %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close" class="fade close">
             <span aria-hidden="true">&times;</span>
-        </button>        {{ mess }}
-                </div>
-        {% endif %}
+        </button> {{ mess }}
+    </div>
+    {% endif %}
     {% endfor %}
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
         <a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
@@ -20,8 +21,8 @@
             aria-controls="nav-profile" aria-selected="false">Gebruikers</a>
     </div>
     <div class="tab-content" id="nav-tabContent">
-        <div class="geenScrollBar tab-pane fade show active" id="nav-home"
-            role="tabpanel" aria-labelledby="nav-home-tab">
+        <div class="geenScrollBar tab-pane fade show active" id="nav-home" role="tabpanel"
+            aria-labelledby="nav-home-tab">
             <table class="table">
                 <thead>
                     <tr>
@@ -30,7 +31,7 @@
                         <th scope="col">Beschrijving</th>
                         <th scope="col">
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CreateModal"
-                                 data-whatever="@mdo">Create video
+                                data-whatever="@mdo">Create video
                             </button>
                             </button>
                         </th>
