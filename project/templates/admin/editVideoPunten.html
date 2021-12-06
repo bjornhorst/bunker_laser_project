@@ -38,6 +38,9 @@
                     <button onclick="getX_Rechts()" class="btn btn-primary">
                         Motor X rechts
                     </button>
+                    <button onclick="saveStappenX({{ id }})" class="btn btn-primary">
+                        Save motor X
+                    </button>
                     <p>X motor maakt <a id="stappenX">0</a> stappen</p>
                 </div>
                 <div class="col-sm">
@@ -46,6 +49,9 @@
                     </button>
                     <button onclick="getY_Rechts()" class="btn btn-primary">
                         Motor Y rechts
+                    </button>
+                    <button onclick="saveStappenY({{ id }})" class="btn btn-primary">
+                        Save motor Y
                     </button>
                     <p>Y motor maakt <a id="stappenY">0</a> stappen</p>
                 </div>
@@ -212,6 +218,32 @@
                 getX_Rechts()
             }
 
+        }
+
+        function saveStappenX(id){
+            var proceed = confirm("Weet je zeker dat je deze stap wilt toevoegen");
+            if (proceed) {
+                //proceed
+                jsonObj = [];
+
+                jsonObj.push(stappenX);
+                console.log(jsonObj);
+            } else {
+                //don't proceed
+            }
+        }
+
+        function saveStappenY(id){
+            var proceed = confirm("Weet je zeker dat je deze stap wilt toevoegen");
+            if (proceed) {
+                //proceed
+                jsonObj = [];
+
+                jsonObj.push(stappenY);
+                console.log(jsonObj);
+            } else {
+                //don't proceed
+            }
         }
 
     </script>
