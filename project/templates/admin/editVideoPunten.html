@@ -2,14 +2,14 @@
 {% extends "base.html" %}
 
 <body onload="updateMarkerList()">
-    {% block content %}
+{% block content %}
     <h1>VideoPunten</h1>
     <div class="container">
         <div class="row">
             <div class="col-xs-6">
                 <video id="example_video_1" class="video-js vjs-default-skin" controls preload="auto" autoplay
-                    width="640" height="360" data-setup='{"width": 640, "height": 360}'>
-                    <source src="{{ url_for('static', filename=file) }}" type='video/mp4' />
+                       width="640" height="360" data-setup='{"width": 640, "height": 360}'>
+                    <source src="{{ url_for('static', filename=file) }}" type='video/mp4'/>
                 </video>
                 <button onclick="addMarkerLaserOn()" class="btn btn-primary">
                     Laser aan
@@ -26,6 +26,20 @@
                 <div id="videdPuntenTable" class="m-3">
                     lijst
                 </div>
+
+            </div>
+
+            <div id="videoStappenTable" class="m-4">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Select</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
             </div>
         </div>
 
@@ -50,7 +64,7 @@
                     <button onclick="getY_Rechts()" class="btn btn-primary">
                         Motor Y rechts
                     </button>
-                    <button onclick="saveStappenY({{ id }})" class="btn btn-primary">
+                    <button onclick="updateStappenList({{ stappenY }})" class="btn btn-primary">
                         Save motor Y
                     </button>
                     <p>Y motor maakt <a id="stappenY">0</a> stappen</p>
@@ -76,7 +90,9 @@
             video.markers({
                 markers: data1,
             });
-            setTimeout(() => { updateMarkerList(); }, 500);
+            setTimeout(() => {
+                updateMarkerList();
+            }, 500);
         });
 
         // load video object
@@ -133,6 +149,7 @@
             }
             updateMarkerList();
         }
+
         function saveMarkers(id) {
             var proceed = confirm("Weet je zeker dat je alle punten hebt toegevoegd?");
             if (proceed) {
@@ -204,23 +221,20 @@
             if (e.keyCode == '38') {
                 // up arrow
                 getY_Links();
-            }
-            else if (e.keyCode == '40') {
+            } else if (e.keyCode == '40') {
                 // down arrow
                 getY_Rechts();
-            }
-            else if (e.keyCode == '37') {
+            } else if (e.keyCode == '37') {
                 // left arrow
                 getX_Links();
-            }
-            else if (e.keyCode == '39') {
+            } else if (e.keyCode == '39') {
                 // right arrow
                 getX_Rechts()
             }
 
         }
 
-        function saveStappenX(id){
+        function saveStappenX(id) {
             var proceed = confirm("Weet je zeker dat je deze stap wilt toevoegen");
             if (proceed) {
                 //proceed
@@ -233,19 +247,37 @@
             }
         }
 
-        function saveStappenY(id){
-            var proceed = confirm("Weet je zeker dat je deze stap wilt toevoegen");
-            if (proceed) {
-                //proceed
-                jsonObj = [];
+        function saveStappenY(id) {
+            //proceed
+            jsonObj = [];
+            var stappenaray = video.stappen.getStappen();
 
-                jsonObj.push(stappenY);
-                console.log(jsonObj);
-            } else {
-                //don't proceed
-            }
+            console.log(jsonObj);
+            str = JSON.stringify(jsonObj);
+            var url = '/admin/video/' + id + '/punten/edit/';
+            var form = $('<form action="' + url + '" method="post" style="visibility: hidden">' +
+                '<input type="text" name="videopunten" value=' + str + ' />' +
+                '</form>');
+            $('body').append(form);
+            console.log(str); // Logs output to dev tools console.
+            form.submit();
+            jsonObj.push(stappenY);
+            console.log(jsonObj[0]);
         }
 
+        function updateStappenList(stappen) {
+                var markup = "<tr><td>Links</td><td>" + stappenY +"</td></tr>";
+                $("table tbody").append(markup);
+                console.log(stappen)
+        }
+
+
+        function removeMarker(id) {
+            if (id != 0) {
+                video.markers.remove([id]);
+            }
+            updateMarkerList();
+        }
     </script>
-    {% endblock %}
+{% endblock %}
 </body>
