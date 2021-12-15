@@ -29,7 +29,19 @@
 
             </div>
 
-            <div id="videoStappenTable" class="m-4">
+            <div id="videoStappenTableY" class="m-4">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Select</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+            <div id="videoStappenTableX" class="m-4">
                 <table>
                     <thead>
                     <tr>
@@ -52,7 +64,7 @@
                     <button onclick="getX_Rechts()" class="btn btn-primary">
                         Motor X rechts
                     </button>
-                    <button onclick="saveStappenX({{ id }})" class="btn btn-primary">
+                    <button onclick="updateStappenListX({{ id }})" class="btn btn-primary">
                         Save motor X
                     </button>
                     <p>X motor maakt <a id="stappenX">0</a> stappen</p>
@@ -64,7 +76,7 @@
                     <button onclick="getY_Rechts()" class="btn btn-primary">
                         Motor Y rechts
                     </button>
-                    <button onclick="updateStappenList({{ stappenY }})" class="btn btn-primary">
+                    <button onclick="updateStappenListY({{ stappenY }})" class="btn btn-primary">
                         Save motor Y
                     </button>
                     <p>Y motor maakt <a id="stappenY">0</a> stappen</p>
@@ -235,12 +247,34 @@
         }
 
 
-        function updateStappenList(stappen) {
-                var markup = "<tr><td>Links</td><td>" + stappenY +"</td></tr>";
+        function updateStappenListY(stappen) {
+            if ( stappenY <= 0) 
+            {
+                var markup = "<tr><td>MoterY Links</td><td>" + stappenY +"</td></tr>";
+            } 
+            else 
+            {
+                var markup = "<tr><td>MoterY rechts</td><td>" + stappenY +"</td></tr>";
+            }
+
                 $("table tbody").append(markup);
-                console.log(stappen)
+                // console.log(stappen)
         }
 
+
+        function updateStappenListX(stappen) {
+            if ( stappenX <= 0) 
+            {
+                var markup = "<tr><td>MoterX Links</td><td>" + stappenX +"</td></tr>";
+            } 
+            else 
+            {
+                var markup = "<tr><td>MoterX rechts</td><td>" + stappenX +"</td></tr>";
+            }
+
+                $("table tbody").append(markup);
+                // console.log(stappen)
+        }
 
         function removeMarker(id) {
             if (id != 0) {
