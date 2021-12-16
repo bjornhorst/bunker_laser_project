@@ -7,7 +7,7 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-6">
-                <video id="example_video_1" class="video-js vjs-default-skin" controls preload="auto" autoplay
+                <video id="example_video_1" class="video-js vjs-default-skin" controls preload="auto"
                        width="640" height="360" data-setup='{"width": 640, "height": 360}'>
                     <source src="{{ url_for('static', filename=file) }}" type='video/mp4'/>
                 </video>
@@ -33,7 +33,9 @@
                 <table>
                     <thead>
                     <tr>
-                        <th>Select</th>
+                        <th>Motor Y</th>
+                        <th>Aantal stappen</th>
+
                     </tr>
                     </thead>
                     <tbody>
@@ -42,10 +44,12 @@
                 </table>
             </div>
             <div id="videoStappenTableX" class="m-4">
-                <table>
+                <table name="">
                     <thead>
                     <tr>
-                        <th>Select</th>
+                        <th>Motor X</th>
+                        <th>Aantal stappen</th>
+
                     </tr>
                     </thead>
                     <tbody>
