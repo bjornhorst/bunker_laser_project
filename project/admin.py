@@ -42,7 +42,7 @@ def edit_video(id):
 @login_required
 def edit_video_get(id):
     video = Video.query.get(id)
-    return render_template('admin/editVideoPunten.html', id=id ,title=video.title, beschrijving=video.beschrijving, file=video.href, videoPunten=video.videoPunten)
+    return render_template('admin/editVideoPunten copy.html', id=id ,title=video.title, beschrijving=video.beschrijving, file=video.href, videoPunten=video.videoPunten)
 
 
 @admin.route("/test/<id>", methods=['GET'])
