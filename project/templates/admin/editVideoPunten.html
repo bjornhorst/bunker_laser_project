@@ -96,10 +96,14 @@
     <link href="{{ url_for('static', filename='css/videopunten.css') }}" rel="stylesheet">
 
     <script>
+
+        //set default value to 0
         var stappenX = 0;
         var stappenY = 0;
+
         var video = videojs('example_video_1');
 
+        //call to get the video markers for the laser points
         $.getJSON('http://127.0.0.1:5000/test/{{ id }}', function (data) {
             console.log(data)
             data1 = data;
@@ -111,8 +115,7 @@
             }, 500);
         });
 
-        // load video object
-
+        //function for adding a marker to turn on the laser
         function addMarkerLaserOn() {
             console.log("current time = " + video.currentTime);
             video.markers.add([{
@@ -122,6 +125,7 @@
             updateMarkerList();
         }
 
+        //function for adding a marker to turn off the laser
         function addMarkerLaserOff() {
             console.log("current time = " + video.currentTime);
             video.markers.add([{
@@ -132,6 +136,7 @@
             updateMarkerList();
         }
 
+        //function for updating the list with markers
         function updateMarkerList() {
             var vidList = video.markers.getMarkers();
             markerId = 1
@@ -159,6 +164,7 @@
             $("#videdPuntenTable").append(markerTable);
         }
 
+        //function for removing a marker
         function removeMarker(id) {
             if (id != 0) {
                 video.markers.remove([id]);
@@ -252,11 +258,11 @@
 
 
         function updateStappenListY(stappen) {
-            if ( stappenY <= 0) 
+            if ( stappenY <= 0)
             {
                 var markup = "<tr><td>MoterY Links</td><td>" + stappenY +"</td></tr>";
-            } 
-            else 
+            }
+            else
             {
                 var markup = "<tr><td>MoterY rechts</td><td>" + stappenY +"</td></tr>";
             }
@@ -267,11 +273,11 @@
 
 
         function updateStappenListX(stappen) {
-            if ( stappenX <= 0) 
+            if ( stappenX <= 0)
             {
                 var markup = "<tr><td>MoterX Links</td><td>" + stappenX +"</td></tr>";
-            } 
-            else 
+            }
+            else
             {
                 var markup = "<tr><td>MoterX rechts</td><td>" + stappenX +"</td></tr>";
             }
