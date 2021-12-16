@@ -135,6 +135,9 @@ nav a:hover {
     height: calc(100vh - (86px + 48px + 56px + 43px + 48px)) !important;
     flex-wrap: nowrap !important;
 }
+.editTable{
+    align-self: center;
+}
 .videoContainer{
     margin-top: 0.5em
 }
