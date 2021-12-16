@@ -2,7 +2,7 @@
 {% extends "base.html" %}
 
 <body onload="updateMarkerList()">
-    {% block content %}
+{% block content %}
     <!-- Page header with logo and tagline-->
     <!-- Page content-->
     <div class="container">
@@ -11,10 +11,12 @@
             <div class="col-lg-8">
                 <!-- Featured blog post-->
                 <div class="card mb-4">
-                    <a href="#!"> <video id="example_video_1" class="video-js vjs-default-skin" controls preload="auto"
-                            autoplay width="750" height="360" data-setup='{"width": 100%, "height": 360}'>
-                            <source src="{{ url_for('static', filename=file) }}" type='video/mp4' />
-                        </video></a>
+                    <a href="#!">
+                        <video id="example_video_1" class="video-js vjs-default-skin" controls preload="auto"
+                               width="750" height="360" data-setup='{"width": 100%, "height": 360}'>
+                            <source src="{{ url_for('static', filename=file) }}" type='video/mp4'/>
+                        </video>
+                    </a>
 
                 </div>
                 <!-- Nested row for non-featured blog posts-->
@@ -22,12 +24,26 @@
                     <div class="col-lg-6">
                         <!-- Blog post-->
                         <div class="card mb-4">
-                            <div id="videoStappenTableY" class="m-4">
-                                <table>
+                            <div id="videoStappenTablex" class="m-4">
+                                <table id="videoStappenTableX">
                                     <thead>
-                                        <tr>
-                                            <th>Select</th>
-                                        </tr>
+                                    <tr>
+                                        <th>Select</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card mb-4">
+                            <div id="videoStappenTableY" class="m-4">
+                                <table id="videoStappenTableY">
+                                    <thead>
+                                    <tr>
+                                        <th>Select</th>
+                                    </tr>
                                     </thead>
                                     <tbody>
 
@@ -58,70 +74,75 @@
                 <!-- Categories widget -->
                 <div class="card mb-4">
                     <div class=" card-header">Laser aansturing</div>
-                    <div class="card-body" ">
-                    <div class=" row">
-                        <div class="col-sm-6">
-                            <button onclick="addMarkerLaserOn()" class="btn btn-primary">
-                                Laser aan
-                            </button>
-                        </div>
-                        <div class="col-sm-6">
-                            <button onclick="addMarkerLaserOff()" class="btn btn-primary">
-                                Laser uit
-                            </button>
-                        </div>
-                        <div class="col-sm-11" style="text-align: center; margin-top: 1em;">
-                            <button onclick="saveMarkers({{ id }})" class="btn btn-primary">
-                                save markers
-                            </button>
+                    <div class="card-body">
+                        <div class=" row">
+                            <div class="col-sm-6">
+                                <button onclick="addMarkerLaserOn()" class="btn btn-primary">
+                                    Laser aan
+                                </button>
+                            </div>
+                            <div class="col-sm-6">
+                                <button onclick="addMarkerLaserOff()" class="btn btn-primary">
+                                    Laser uit
+                                </button>
+                            </div>
+                            <div class="col-sm-11" style="text-align: center; margin-top: 1em;">
+                                <button onclick="saveMarkers({{ id }})" class="btn btn-primary">
+                                    save markers
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- Side widget-->
-            <div class="card mb-4">
-                <div class="card-header">Aansturing motor X</div>
-                <div class="card-body">
-                    <div class="col-sm-12" style="text-align: center;">
-                        <button type="button" onClick="getX_Links()" class="btn btn-primary">
-                            Motor X links
-                        </button><br /><br />
-                        <button onclick="getX_Rechts()" class="btn btn-primary">
-                            Motor X rechts
-                        </button><br /><br />
-                        <button onclick="updateStappenListX({{ stappenX }})" class="btn btn-primary">
-                            Save motor X
-                        </button><br /><br />
-                        <p>X motor maakt <a id="stappenX">0</a> stappen</p>
-                    </div>
+                <!-- Side widget-->
+                <div class="card mb-4">
+                    <div class="card-header">Aansturing motor X</div>
+                    <div class="card-body">
+                        <div class="col-sm-12" style="text-align: center;">
+                            <button type="button" onClick="getX_Links()" class="btn btn-primary">
+                                Motor X links
+                            </button>
+                            <br/><br/>
+                            <button onclick="getX_Rechts()" class="btn btn-primary">
+                                Motor X rechts
+                            </button>
+                            <br/><br/>
+                            <button onclick="updateStappenListX({{ stappenX }})" class="btn btn-primary">
+                                Save motor X
+                            </button>
+                            <br/><br/>
+                            <p>X motor maakt <a id="stappenX">0</a> stappen</p>
+                        </div>
 
+                    </div>
                 </div>
-            </div>
 
-            <div class="card mb-4">
-                <div class="card-header">Aansturing motor Y</div>
-                <div class="card-body">
-                    <div class="col-sm-12" style="text-align: center;">
-                        <button type="button" onClick="getY_Links()" class="btn btn-primary">
-                            Motor Y links
-                        </button><br /><br />
-                        <button onclick="getY_Rechts()" class="btn btn-primary">
-                            Motor Y rechts
-                        </button><br /><br />
-                        <button onclick="updateStappenListY({{ stappenY }})" class="btn btn-primary">
-                            Save motor Y
-                        </button><br /><br />
-                        <p>Y motor maakt <a id="stappenY">0</a> stappen</p>
+                <div class="card mb-4">
+                    <div class="card-header">Aansturing motor Y</div>
+                    <div class="card-body">
+                        <div class="col-sm-12" style="text-align: center;">
+                            <button type="button" onClick="getY_Links()" class="btn btn-primary">
+                                Motor Y links
+                            </button>
+                            <br/><br/>
+                            <button onclick="getY_Rechts()" class="btn btn-primary">
+                                Motor Y rechts
+                            </button>
+                            <br/><br/>
+                            <button onclick="updateStappenListY({{ stappenY }})" class="btn btn-primary">
+                                Save motor Y
+                            </button>
+                            <br/><br/>
+                            <p>Y motor maakt <a id="stappenY">0</a> stappen</p>
+                        </div>
+
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
-    </div>
     <!-- Footer-->
     <!-- Bootstrap core JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
 
@@ -136,6 +157,11 @@
         //set default value to 0
         var stappenX = 0;
         var stappenY = 0;
+
+        var stappenXObject = {"stappenX": [
+
+            ]};
+        var stappenYArray = [];
 
         var video = videojs('example_video_1');
 
@@ -224,13 +250,13 @@
                 });
                 console.log(jsonObj);
                 str = JSON.stringify(jsonObj);
-                var url = '/admin/video/' + id + '/punten/edit/';
-                var form = $('<form action="' + url + '" method="post" style="visibility: hidden">' +
-                    '<input type="text" name="videopunten" value=' + str + ' />' +
-                    '</form>');
-                $('body').append(form);
+                {#var url = '/admin/video/' + id + '/punten/edit/';#}
+                {#var form = $('<form action="' + url + '" method="post" style="visibility: hidden">' +#}
+                {#    '<input type="text" name="videopunten" value=' + str + ' />' +#}
+                {#    '</form>');#}
+                {#$('body').append(form);#}
                 console.log(str); // Logs output to dev tools console.
-                form.submit();
+                {#form.submit();#}
 
             } else {
                 //don't proceed
@@ -292,33 +318,27 @@
 
         }
 
-
-        function updateStappenListY(stappen) {
-            if ( stappenY <= 0)
-            {
-                var markup = "<tr><td>MoterY Links</td><td>" + stappenY +"</td></tr>";
-            }
-            else
-            {
-                var markup = "<tr><td>MoterY rechts</td><td>" + stappenY +"</td></tr>";
+        function updateStappenListX(stappen) {
+            if (stappenX <= 0) {
+                var markup = "<tr><td>MoterX Links</td><td>" + stappenX + "</td></tr>";
+                stappenXObject.stappenX.push(stappenX);
+                console.log(stappenXObject);
+            } else {
+                var markup = "<tr><td>MoterX rechts</td><td>" + stappenX + "</td></tr>";
             }
 
-            $("table tbody").append(markup);
+            $("#videoStappenTableX>tbody").append(markup);
             // console.log(stappen)
         }
 
-
-        function updateStappenListX(stappen) {
-            if ( stappenX <= 0)
-            {
-                var markup = "<tr><td>MoterX Links</td><td>" + stappenX +"</td></tr>";
-            }
-            else
-            {
-                var markup = "<tr><td>MoterX rechts</td><td>" + stappenX +"</td></tr>";
+        function updateStappenListY(stappen) {
+            if (stappenY <= 0) {
+                var markup = "<tr><td>MoterY Links</td><td>" + stappenY + "</td></tr>";
+            } else {
+                var markup = "<tr><td>MoterY rechts</td><td>" + stappenY + "</td></tr>";
             }
 
-            $("table tbody").append(markup);
+            $("#videoStappenTableY>tbody").append(markup);
             // console.log(stappen)
         }
 
@@ -329,5 +349,5 @@
             updateMarkerList();
         }
     </script>
-    {% endblock %}
+{% endblock %}
 </body>
