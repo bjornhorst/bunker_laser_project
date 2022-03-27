@@ -32,7 +32,6 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-
                                     </tbody>
                                 </table>
                             </div>
@@ -46,7 +45,6 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-
                                     </tbody>
                                 </table>
                             </div>
@@ -64,13 +62,10 @@
                         <!-- Blog post-->
                     </div>
                 </div>
-                <!-- Pagination-->
 
             </div>
             <!-- Side widgets-->
             <div class="col-lg-4">
-                <!-- Search widget-->
-
                 <!-- Categories widget -->
                 <div class="card mb-4">
                     <div class=" card-header">Laser aansturing</div>
@@ -84,11 +79,6 @@
                             <div class="col-sm-6">
                                 <button onclick="addMarkerLaserOff()" class="btn btn-primary">
                                     Laser uit
-                                </button>
-                            </div>
-                            <div class="col-sm-11" style="text-align: center; margin-top: 1em;">
-                                <button onclick="saveMarkers({{ id }})" class="btn btn-primary">
-                                    save markers
                                 </button>
                             </div>
                         </div>
@@ -135,11 +125,17 @@
                             <br/><br/>
                             <p>Y motor maakt <a id="stappenY">0</a> stappen</p>
                         </div>
-
                     </div>
+                    
                 </div>
+                <div class="col-sm-11" style="text-align: center; margin-top: 1em;">
+                    <button onclick="saveMarkers({{ id }})" class="btn btn-lg btn-primary">
+                        Sla de markers en stappen op
+                    </button>
+                </div>'
             </div>
         </div>
+
     </div>
     <!-- Footer-->
     <!-- Bootstrap core JS-->
@@ -157,12 +153,9 @@
         //set default value to 0
         var stappenX = 0;
         var stappenY = 0;
-
         var stappenXObject = {"stappenX": [
-
             ]};
         var stappenYArray = [];
-
         var video = videojs('example_video_1');
 
         //call to get the video markers for the laser points
@@ -235,7 +228,7 @@
         }
 
         function saveMarkers(id) {
-            var proceed = confirm("Weet je zeker dat je alle punten hebt toegevoegd?");
+            var proceed = confirm("Weet je zeker dat je alle punten en stappen hebt toegevoegd?");
             if (proceed) {
                 //proceed
                 jsonObj = [];
@@ -250,13 +243,13 @@
                 });
                 console.log(jsonObj);
                 str = JSON.stringify(jsonObj);
-                {#var url = '/admin/video/' + id + '/punten/edit/';#}
-                {#var form = $('<form action="' + url + '" method="post" style="visibility: hidden">' +#}
-                {#    '<input type="text" name="videopunten" value=' + str + ' />' +#}
-                {#    '</form>');#}
-                {#$('body').append(form);#}
+                var url = '/admin/video/' + id + '/punten/edit/';
+                var form = $('<form action="' + url + '" method="post" style="visibility: hidden">' +
+                    '<input type="text" name="videopunten" value=' + str + ' />' +
+                    '</form>');
+                $('body').append(form);
                 console.log(str); // Logs output to dev tools console.
-                {#form.submit();#}
+                form.submit();
 
             } else {
                 //don't proceed
