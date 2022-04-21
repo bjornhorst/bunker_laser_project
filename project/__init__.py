@@ -4,7 +4,6 @@ from flask_login import LoginManager
 from flask_mail import Mail
 from config import Config
 from flask_migrate import Migrate
-
 # init SQLAlchemy so we can use it later in our models
 
 

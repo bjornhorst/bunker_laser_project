@@ -1,0 +1,20 @@
+  .custom-marker1 {
+            color: black;
+            background-color: blue !important;
+        }
+        .tbl_sm {
+            border-collapse: collapse;
+        }
+        .tbl_sm td, .tbl_sm th {
+            border: 1px solid gray;
+            padding: 3px 5px;
+        }
+        table {
+            border: solid black 3px;
+        }
+        td {
+            border: solid black 1px;
+        }
+        .hide-marker {
+            display: none !important;
+        }

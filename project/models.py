@@ -35,11 +35,6 @@ class Video(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(64), index=True)
     beschrijving = db.Column(db.String(120), index=True)
-    cords = db.Column(db.String(120), index=True)
+    videoPunten = db.Column(db.String(500), index=True, server_default='[{"time":0,"laserOnOff":"begin"}]')
+    data = db.Column(db.String(120), index=True)
     href = db.Column(db.String(120), index=True)
-
-
-class Test(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(64), index=True)
-    dijk = db.Column(db.String(64), index=True)

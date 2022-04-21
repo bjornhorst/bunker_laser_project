@@ -1,12 +1,45 @@
 {% set active_page = "admin" %}
 {% extends "base.html" %}
-
 <body>
-    {% block content %}
+{% block content %}
     <h1>VideoPunten</h1>
+    <div class="container">
+    <div class="row">
+        <div class="col-xs-6">
 
-        <p>Titel: {{ title }}</p>
-        <p>Beschrijving: {{ beschrijving }}</p>
-        <p>File: {{ path }}</p>
-    {% endblock %}
+    <video
+            id="example_video_1"
+            class="video-js vjs-default-skin"
+            controls
+            preload="auto"
+            autoplay
+            width="640"
+            height="360"
+            data-setup='{"width": 640, "height": 360}'>
+        <source src="{{ url_for('static', filename=file) }}" type='video/mp4'/>
+    </video>
+    <button onclick="addMarkerLaserOn()" class="btn btn-primary">
+        Laser aan
+    </button>
+    <button onclick="addMarkerLaserOff()" class="btn btn-primary">
+        Laser uit
+    </button>
+    <button onclick="saveMarkers({{ id }})" class="btn btn-primary">
+        save markers
+    </button>
+        </div>
+        <div class="col-xs-6">
+
+    <div id="videdPuntenTable" class="m-3">
+        lijst
+    </div>
+        </div>
+    </div>
+</div>
+
+        <script src="{{ url_for('static', filename='js/videopunten.js') }}" type="application/javascript"></script>
+        <link href="{{ url_for('static', filename='css/videopunten.css') }}" rel="stylesheet">
+
+
+{% endblock %}
 </body>

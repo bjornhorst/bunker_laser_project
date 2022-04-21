@@ -1,26 +1,27 @@
+{% set active_page = "Home" %}
 {% extends "base.html" %}
 
 {% block content %}
-
 <div>
-  <img src="../static/images/hoofdpagina-picture.jpg" width="100%" />
+  <h1 class="homeImgTitle">Bunker Seeburgtische</h1>
+  <img src="../static/images/hoofdpagina-picture.jpg" width="100%" style="height:92VH" />
 </div><br />
 
-<div class="container" style="text-align: center; padding: 1em;">
+<div class="container Homecontainer">
   <div class="row">
     <div class="col-sm homepage-tegels">
-      <i style="font-size: 30px;" class="fa fa-envelope" aria-hidden="true"></i><br />
+      <i class="fa fa-envelope homeIcon" aria-hidden="true"></i><br />
       <p>secretariaat@<br />bunkersterschelling.nl</p>
     </div>
     <div class="col-sm homepage-tegels">
-      <i style="font-size: 30px;" class="fa fa-map-marker" aria-hidden="true"></i><br />
+      <i class="fa fa-map-marker homeIcon" aria-hidden="true"></i><br />
       <p>Tigerpad 5, 8881 GB,<br /> West-Terschelling</p>
     </div>
   </div>
 </div><br />
 
 <div class="container">
-  <h1 style="color: #3f4e5d; font-weight: 900; text-align: center; ">Bunker
+  <h1 class="homeTitle">Bunker
     Terschelling
   </h1>
   <p>
@@ -28,6 +29,8 @@
     Wij hebben dit project gemaakt als schoolproject. In dit project hebben wij een prototype ontworpen, ontwikkeld
     en een webapplicatie gemaakt voor de stichting bunkersterschelling.
   </p>
+  {{ code }}
+
   <hr>
 </div>
 
